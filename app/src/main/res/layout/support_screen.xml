@@ -1,0 +1,428 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="@android:color/white"
+    >
+
+   <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:id="@+id/menu">
+
+       <include layout="@layout/my_menubar" />
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/menu"
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/layOne"
+                >
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/privacy_lay"
+                    android:padding="15dp">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="20dp"
+                    android:background="@drawable/lock_small"
+                    android:id="@+id/ring"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="21dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/ring"
+                    android:text="Privacy"
+                    android:textColor="@android:color/darker_gray"
+                    android:layout_centerVertical="true"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:layout_marginLeft="20dp"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=">"
+                    android:textColor="@android:color/darker_gray"
+                    android:layout_centerVertical="true"
+                    android:textSize="30sp"
+                    android:textStyle="bold"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="15dp"
+                    />
+
+                </RelativeLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@+id/privacy_lay"
+                    android:background="@android:color/darker_gray"
+                    />
+
+            </RelativeLayout>
+
+                 <RelativeLayout
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:layout_below="@+id/layOne"
+                      android:id="@+id/two">
+
+                      <RelativeLayout
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:id="@+id/term_lay"
+                          android:padding="15dp">
+
+                      <ImageView
+                          android:layout_width="30dp"
+                          android:layout_height="30dp"
+                          android:layout_centerVertical="true"
+                          android:layout_marginLeft="20dp"
+                          android:layout_marginTop="10dp"
+                          android:background="@drawable/paper"
+                          android:id="@+id/support"
+                          />
+                      <TextView
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:layout_toRightOf="@+id/support"
+                          android:text="Term"
+                          android:textColor="@android:color/darker_gray"
+                          android:layout_centerVertical="true"
+                          android:textSize="20sp"
+                          android:textStyle="bold"
+                          android:layout_marginLeft="20dp"
+                          />
+                      <TextView
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:text=">"
+                          android:textColor="@android:color/darker_gray"
+                          android:layout_centerVertical="true"
+                          android:textSize="30sp"
+                          android:textStyle="bold"
+                          android:layout_alignParentRight="true"
+                          android:layout_marginRight="15dp"
+                          />
+
+                          </RelativeLayout>
+
+                      <View
+                          android:layout_width="match_parent"
+                          android:layout_height="1dp"
+                          android:layout_below="@+id/term_lay"
+                          android:background="@android:color/darker_gray"
+                          />
+
+                  </RelativeLayout>
+
+                     <RelativeLayout
+                           android:layout_width="match_parent"
+                           android:layout_height="wrap_content"
+                           android:layout_below="@+id/two"
+                           android:id="@+id/three">
+
+                           <RelativeLayout
+                               android:layout_width="wrap_content"
+                               android:layout_height="wrap_content"
+                               android:id="@+id/contact_layout"
+                               android:padding="15dp">
+
+                           <ImageView
+                               android:layout_width="30dp"
+                               android:layout_height="30dp"
+                               android:layout_centerVertical="true"
+                               android:layout_marginLeft="20dp"
+                               android:layout_marginTop="10dp"
+                               android:background="@drawable/phone_small"
+                               android:id="@+id/privacy"
+                               />
+
+
+                           <TextView
+                               android:layout_width="wrap_content"
+                               android:layout_height="wrap_content"
+                               android:text="Contact"
+                               android:textColor="@android:color/darker_gray"
+                               android:textSize="20sp"
+                               android:textStyle="bold"
+                               android:layout_marginLeft="20dp"
+                               android:layout_centerVertical="true"
+                               android:layout_toRightOf="@+id/privacy"
+                               android:layout_toEndOf="@+id/privacy"
+                               android:layout_marginStart="23dp" />
+
+                               </RelativeLayout>
+
+
+                           <View
+                               android:layout_width="match_parent"
+                               android:layout_height="1dp"
+                               android:layout_below="@+id/contact_layout"
+                               android:background="@android:color/darker_gray"
+                               />
+
+                       </RelativeLayout>
+
+                       <RelativeLayout
+                           android:layout_width="match_parent"
+                           android:layout_height="wrap_content"
+                           android:layout_below="@+id/three"
+                           android:id="@+id/four"
+                           >
+
+                           <RelativeLayout
+                               android:layout_width="120dp"
+                               android:layout_height="120dp"
+                               android:id="@+id/address_lay"
+                               android:padding="10dp"
+                             >
+
+                           <ImageView
+                               android:layout_width="20dp"
+                               android:layout_height="20dp"
+                               android:layout_centerVertical="true"
+                               android:layout_marginLeft="20dp"
+                               android:background="@drawable/house_icon"
+                               android:id="@+id/house"
+                               android:layout_centerHorizontal="true"
+                               />
+
+
+                           <TextView
+                               android:layout_width="wrap_content"
+                               android:layout_height="wrap_content"
+                               android:layout_below="@+id/house"
+                               android:text="Address:"
+                               android:textColor="@android:color/holo_blue_bright"
+                               android:textSize="20sp"
+                               android:textStyle="bold"
+                               android:layout_marginLeft="20dp"
+                               android:id="@+id/house_label"
+                               android:layout_marginTop="10dp"
+                               android:layout_centerHorizontal="true"
+                               />
+
+
+                           </RelativeLayout>
+                           <TextView
+                               android:layout_width="wrap_content"
+                               android:layout_height="wrap_content"
+                               android:layout_toRightOf="@+id/address_lay"
+
+                               android:text="3655 Nobel Drive , suit 335 , San Diego , Ca 92122 "
+
+                               android:layout_centerInParent="true"/>
+
+                           <View
+                               android:layout_width="match_parent"
+                               android:layout_height="1dp"
+                               android:layout_below="@+id/address_lay"
+                               android:background="@android:color/darker_gray"
+                               />
+
+                       </RelativeLayout>
+
+
+                 <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/four"
+                    android:id="@+id/five"
+                    >
+
+                    <RelativeLayout
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:id="@+id/contact_lay"
+                        android:padding="10dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="20dp"
+                            android:background="@drawable/phone"
+                            android:id="@+id/contact"
+                            android:layout_centerHorizontal="true"
+                            />
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/contact"
+                            android:text="Phone:"
+                            android:textColor="@android:color/holo_blue_bright"
+                            android:textSize="20sp"
+                            android:textStyle="bold"
+                            android:layout_marginLeft="20dp"
+                            android:id="@+id/contact_label"
+                            android:layout_marginTop="10dp"
+                            android:layout_centerHorizontal="true"
+                            />
+
+
+                    </RelativeLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:layout_marginLeft="20dp"
+                        android:text="(858) 291-8555"
+
+                        android:layout_centerInParent="true"/>
+
+
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_below="@+id/contact_lay"
+                        android:background="@android:color/darker_gray"
+                        />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/five"
+                    android:id="@+id/six">
+
+                    <RelativeLayout
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:id="@+id/agent_lay"
+                        android:padding="10dp"
+                        >
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="20dp"
+                            android:background="@drawable/profile_icon"
+                            android:id="@+id/agent"
+                            android:layout_centerHorizontal="true"
+                            />
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/agent"
+                            android:text="Agent:"
+                            android:textColor="@android:color/holo_blue_bright"
+                            android:textSize="20sp"
+                            android:textStyle="bold"
+                            android:layout_marginLeft="20dp"
+                            android:id="@+id/agent_label"
+                            android:layout_marginTop="10dp"
+                            android:layout_centerHorizontal="true"
+                            />
+
+
+                    </RelativeLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Nate Winnett"
+                        android:layout_centerInParent="true"/>
+
+
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_below="@+id/agent_lay"
+                        android:background="@android:color/darker_gray"
+                        />
+
+                </RelativeLayout>
+
+                 <RelativeLayout
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:layout_below="@+id/six"
+                     android:id="@+id/serven"
+                     >
+
+                     <RelativeLayout
+                         android:layout_width="120dp"
+                         android:layout_height="120dp"
+                         android:id="@+id/broker_lay"
+                         android:padding="10dp"
+                         >
+
+                         <ImageView
+                             android:layout_width="30dp"
+                             android:layout_height="30dp"
+                             android:layout_centerVertical="true"
+                             android:layout_marginLeft="20dp"
+                             android:background="@drawable/agent"
+                             android:id="@+id/broker"
+                             android:layout_centerHorizontal="true"
+                             />
+
+
+                         <TextView
+                             android:layout_width="wrap_content"
+                             android:layout_height="wrap_content"
+                             android:layout_below="@+id/broker"
+                             android:text="Broker:"
+                             android:textColor="@android:color/holo_blue_bright"
+                             android:textSize="20sp"
+                             android:textStyle="bold"
+                             android:layout_marginLeft="20dp"
+                             android:id="@+id/broker_label"
+                             android:layout_marginTop="10dp"
+                             android:layout_centerHorizontal="true"
+                             />
+
+
+                     </RelativeLayout>
+                     <TextView
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:layout_toRightOf="@+id/broker_lay"
+                         android:text="James Johnes , james@gmail.com"
+                         android:layout_centerVertical="true"
+                         android:layout_centerHorizontal="true"/>
+
+
+                     <View
+                         android:layout_width="match_parent"
+                         android:layout_height="1dp"
+                         android:layout_below="@+id/broker_lay"
+                         android:background="@android:color/darker_gray"
+                         />
+
+                 </RelativeLayout>
+
+        </RelativeLayout>
+    </ScrollView>
+
+</RelativeLayout>
