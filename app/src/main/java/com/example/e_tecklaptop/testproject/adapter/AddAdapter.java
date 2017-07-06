@@ -3,6 +3,8 @@ package com.example.e_tecklaptop.testproject.adapter;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -54,6 +56,8 @@ public class AddAdapter extends BaseAdapter {
             holder.address = (TextView) convertView.findViewById(R.id.address);
             holder.description = (TextView) convertView.findViewById(R.id.hdesc);
             holder.addImage = (ImageView) convertView.findViewById(R.id.AddImage);
+            holder.addImage.setColorFilter(Color.BLACK , PorterDuff.Mode.LIGHTEN);
+
             convertView.setTag(holder);  // set all the views in convert view through tag.
         } else {
             holder = (ViewHolder) convertView.getTag();

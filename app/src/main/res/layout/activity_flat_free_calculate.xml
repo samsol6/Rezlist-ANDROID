@@ -293,16 +293,32 @@
 
             >
 
-            <TextView
-                android:id="@+id/textView9"
+            <RelativeLayout
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:layout_weight="2"
-                android:gravity="center"
-                android:text="T Comission"
-                android:background="@drawable/column_backgound"
+                android:background="@drawable/column_backgound">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Total"
+                android:layout_centerHorizontal="true"
+                android:layout_alignTop="@+id/textView9"
+                android:layout_marginTop="15dp"
+                android:visibility="visible"
                 />
 
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="Comission"
+
+                />
+
+            </RelativeLayout>
             <TextView
                 android:id="@+id/tc"
                 android:layout_width="80dp"
@@ -369,7 +385,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="  the free is"
+        android:text="  the fee is"
         android:textColor="@android:color/holo_blue_light"
         android:textSize="15sp"
         android:id="@+id/tText"
@@ -388,7 +404,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="For homes under"
+        android:text="For homes above"
         android:textColor="@android:color/holo_blue_light"
         android:textSize="15sp"
         android:id="@+id/sixText"
@@ -412,7 +428,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/tText"
         android:layout_marginTop="5dp"
-        android:text="  the free is"
+        android:text="  the fee is"
         android:textColor="@android:color/holo_blue_light"
         android:textSize="15sp"
         android:id="@+id/eText"
@@ -423,7 +439,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/fText"
         android:layout_marginTop="5dp"
-        android:text="  $3,999"
+        android:text="  $5,999"
         android:textColor="@android:color/holo_red_dark"
         android:textSize="15sp"
         android:id="@+id/Text2"

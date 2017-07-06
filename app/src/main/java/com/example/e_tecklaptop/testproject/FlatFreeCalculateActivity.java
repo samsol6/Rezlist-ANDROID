@@ -65,14 +65,17 @@ public class FlatFreeCalculateActivity extends AppCompatActivity implements View
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 // TODO Auto-generated method stub
                 position = progress;
-         //       minValue.setText("$ "+String.valueOf(position));
-         //       maxValue.setText("$ "+String.valueOf(position+10500));
-                if(sellerTc < 4500 || sellerTc <= 0) {
+
+                if(position < 150000){
+                    position = 150000;
+                }
+
+                if(position < 4500 ) {
                     sellerTc = 4500;
                 }else{
                     sellerTc = (int) (position * 3) / 100;
                 }
-                if(buyerTc < 4500 || buyerTc <= 0) {
+                if(position < 4500) {
                     buyerTc = 4500;
                 }else{
                     buyerTc = (int) (position * 3) / 100;
@@ -84,7 +87,7 @@ public class FlatFreeCalculateActivity extends AppCompatActivity implements View
                 }else{
                     sellerRs = 5999;
                 }
-                if(buyerRs < 3750) {
+                if(position < 3750) {
                    buyerRs =  3750;
 
                 }else{
@@ -101,7 +104,7 @@ public class FlatFreeCalculateActivity extends AppCompatActivity implements View
 
                 tc_save = sellerSave + buyerSave ;
 
-                int finalValue = position+realValue;
+                int finalValue = position;
                 if(finalValue >= 3000000){
                     finalValue = 3000000;
                 }

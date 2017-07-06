@@ -22,8 +22,6 @@ public interface ResInterface {
     @POST("signin")
     Call<SiginApi> signInUser(@Field("password") String field2 , @Field("email") String field1);
 
- //   @POST("signin")
- //   Call<SiginApi> signInUser(@Body JSONObject jsonObject);
 
     @FormUrlEncoded
     @POST("signup")

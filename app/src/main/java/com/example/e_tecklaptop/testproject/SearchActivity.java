@@ -103,7 +103,11 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
             ListApi();
         }
 
+    }
 
+    @Override
+    protected void onResume(){
+        super.onResume();
     }
 
     public void inputClick(View v) {
