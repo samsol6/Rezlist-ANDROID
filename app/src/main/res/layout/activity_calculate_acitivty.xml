@@ -176,7 +176,7 @@
                         android:layout_alignStart="@+id/phoneTv"
                         android:layout_alignLeft="@+id/phoneTv"
                         android:layout_marginRight="20dp"
-                        android:id="@+id/maxPrice_input"
+                        android:id="@+id/phone_input"
                         android:hint="Enter Phone #"
                         android:background="@drawable/edit_text_background"
                         android:layout_marginTop="10dp"
@@ -301,6 +301,7 @@
                             android:background="@drawable/edit_text_background"
                             android:layout_marginTop="10dp"
                             android:paddingLeft="15dp"
+                            android:inputType="number"
                             />
 
                     </RelativeLayout>
@@ -333,6 +334,7 @@
                             android:background="@drawable/edit_text_background"
                             android:layout_marginTop="10dp"
                             android:paddingLeft="15dp"
+                            android:inputType="number"
                             />
 
                     </RelativeLayout>
@@ -375,6 +377,7 @@
                             android:paddingLeft="15dp"
                             android:hint="Any"
                             android:background="@drawable/edit_text_background"
+                            android:inputType="number"
                             />
 
                     </RelativeLayout>
@@ -395,14 +398,19 @@
                             android:id="@+id/bedsTextView"
                             />
 
-                        <Spinner
+                        <EditText
                             android:layout_width="match_parent"
                             android:layout_height="40dp"
                             android:layout_below="@+id/bedsTextView"
                             android:layout_alignStart="@+id/bedsTextView"
                             android:layout_alignLeft="@+id/bedsTextView"
                             android:layout_marginRight="20dp"
-                            android:id="@+id/bed_spinner"
+                            android:id="@+id/bed_input"
+                            android:hint="Any"
+                            android:paddingLeft="15dp"
+                            android:inputType="number"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/edit_text_background"
                             />
 
                     </RelativeLayout>
@@ -420,7 +428,7 @@
             android:layout_below="@+id/baseInfoLay"
             android:layout_margin="20dp"
             android:gravity="center"
-            android:text="flat free #3,999 if under $850,000 listing price if over it is $5,999"
+            android:text="flat fee #3,999 if under $850,000 listing price if over it is $5,999"
             android:textSize="20sp"
             android:textColor="@android:color/holo_blue_light"/>
 

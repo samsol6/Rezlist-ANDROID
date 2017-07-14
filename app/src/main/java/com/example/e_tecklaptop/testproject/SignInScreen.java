@@ -44,16 +44,16 @@ public class SignInScreen extends Activity implements View.OnClickListener {
 
 
     Button siginButton;
-    EditText email_input , password_input ;
-    String RegEx_Email =  "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$" ;//"[A-Za-z][A-Za-z]*[@][A-Za-z][A-Za-z]*[.](com)";
+    EditText email_input, password_input;
+    String RegEx_Email = "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";//"[A-Za-z][A-Za-z]*[@][A-Za-z][A-Za-z]*[.](com)";
 
     CustomDialog customDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-      //  this.overridePendingTransition(R.anim.animation_enter,
-      //          R.anim.animation_leave);
+        //  this.overridePendingTransition(R.anim.animation_enter,
+        //          R.anim.animation_leave);
         setContentView(R.layout.sign_in);
 
         customDialog = new CustomDialog(SignInScreen.this);
@@ -64,22 +64,22 @@ public class SignInScreen extends Activity implements View.OnClickListener {
 
     }
 
-    public void SignUp(View v){
-    //    Intent intent = new Intent(this , SignUpActivity.class);
-    //    startActivity(intent);
-        Intent intent = new Intent(SignInScreen.this , SignUpActivity.class);
+    public void SignUp(View v) {
+        //    Intent intent = new Intent(this , SignUpActivity.class);
+        //    startActivity(intent);
+        Intent intent = new Intent(SignInScreen.this, SignUpActivity.class);
         Bundle bndlanimation =
-                ActivityOptions.makeCustomAnimation(getApplicationContext(), R.anim.animation_enter,R.anim.animation_leave).toBundle();
+                ActivityOptions.makeCustomAnimation(getApplicationContext(), R.anim.animation_enter, R.anim.animation_leave).toBundle();
         startActivity(intent, bndlanimation);
     }
 
-    private void RegisterViews(){
+    private void RegisterViews() {
         siginButton = (Button) findViewById(R.id.login_button);
         email_input = (EditText) findViewById(R.id.email);
         password_input = (EditText) findViewById(R.id.pass);
     }
 
-    private void SetListeners(){
+    private void SetListeners() {
         siginButton.setOnClickListener(this);
     }
 
@@ -96,79 +96,87 @@ public class SignInScreen extends Activity implements View.OnClickListener {
     }
 
 
-
-
-    private boolean Validate(){
-        if(!email_input.getText().toString().matches(RegEx_Email)){
+    private boolean Validate() {
+        if (!email_input.getText().toString().matches(RegEx_Email)) {
 
             return false;
-        }else{
+        } else {
             return true;
         }
     }
 
-    private void retrofitSignInInitialization(){
-        String email= "";
+    private void retrofitSignInInitialization() {
+        String email = "";
         String pass = "";
-        if(!Validate()){
-            Toast.makeText(SignInScreen.this,"Please enter valid email",Toast.LENGTH_LONG).show();
+        if (!Validate()) {
+            Toast.makeText(SignInScreen.this, "Please enter valid email", Toast.LENGTH_LONG).show();
             customDialog.HideDialog();
             return;
 
-        }else{
+        } else {
 
             email = email_input.getText().toString();
-            pass  = password_input.getText().toString();
+            pass = password_input.getText().toString();
         }
 
 
-
-
         Retrofit retrofit = new Retrofit.Builder()
-         .baseUrl(ResInterface.BASE_URL)
+                .baseUrl(ResInterface.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
         ResInterface ResInterface = retrofit.create(ResInterface.class);
-        Call<SiginApi> call = ResInterface.signInUser(pass,email);
+        Call<SiginApi> call = ResInterface.signInUser(pass, email);
 
 
         //asynchronous call
         call.enqueue(new Callback<SiginApi>() {
             @Override
             public void onResponse(Call<SiginApi> call, Response<SiginApi> response) {
-                int code = response.code();
-                SiginApi res = response.body();
+                try {
+                    int code = response.code();
+                    SiginApi res = response.body();
 
-                String stat =  res.getStatus().toString();
-                User user = res.getUser();
-                String role =  user.getRole();
+                    String stat = res.getStatus().toString();
+                    User user = res.getUser();
+                    String role = user.getRole();
+                    String email = user.getEmail();
 
-                SharedPreferences preferences = getSharedPreferences("UserRole", Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = preferences.edit();
-                editor.putString("role",role);
-                editor.commit();
+                    SharedPreferences preferences = getSharedPreferences("UserRole", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = preferences.edit();
+                    editor.putString("role", role);
+                    editor.commit();
 
 
-                customDialog.HideDialog();
-                if(stat.equals("successful")){
-             //       Intent intent = new Intent(SignInScreen.this , SearchActivity.class);
-             //       startActivity(intent);
+                    customDialog.HideDialog();
+                    if (stat.equals("successful")) {
+                        //       Intent intent = new Intent(SignInScreen.this , SearchActivity.class);
+                        //       startActivity(intent);
 
-                     Intent i = new Intent(SignInScreen.this, SearchActivity.class);
-                     i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                     startActivity(i);
-                     finish();
+                        Intent i = new Intent(SignInScreen.this, SearchActivity.class);
+                        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(i);
+                        finish();
 
-                }else{
-                    Toast.makeText(SignInScreen.this , "Please enter valid email or password!" ,Toast.LENGTH_LONG).show();
+                        SharedPreferences pref = getSharedPreferences("KeepMeLogIn", Context.MODE_PRIVATE);
+                        SharedPreferences.Editor peditor = pref.edit();
+                        peditor.putString("email", email);
+                        peditor.commit();
+
+
+                    } else {
+                        Toast.makeText(SignInScreen.this, "Please enter valid email or password!", Toast.LENGTH_LONG).show();
+                    }
+                } catch (Exception e) {
+                    customDialog.HideDialog();
+                    Toast.makeText(SignInScreen.this, "Something went wrong , please try again", Toast.LENGTH_LONG).show();
                 }
 
             }
 
             @Override
             public void onFailure(Call<SiginApi> call, Throwable t) {
-                Toast.makeText(SignInScreen.this , "Something went wrong , please check your connection and try again" ,Toast.LENGTH_LONG).show();
+                Toast.makeText(SignInScreen.this, "Please check your connection and try again", Toast.LENGTH_LONG).show();
                 customDialog.HideDialog();
             }
         });

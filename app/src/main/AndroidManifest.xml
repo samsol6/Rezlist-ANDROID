@@ -30,13 +30,13 @@
         </activity>
         <activity
             android:name=".SignInScreen"
+            android:configChanges="keyboardHidden|orientation|screenSize"
             android:label="@string/app_name"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
-            android:configChanges="keyboardHidden|orientation|screenSize"/>
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
         <activity
             android:name=".SearchActivity"
-            android:theme="@style/customTheme"
-            android:configChanges="keyboardHidden|orientation|screenSize"/>
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:theme="@style/customTheme" />
         <activity
             android:name=".SettingActivity"
             android:theme="@style/settingTheme" />
@@ -71,7 +71,7 @@
             android:name=".CalculateActivity"
             android:theme="@style/settingTheme" />
         <activity
-            android:name=".FlatFreeCalculateActivity"
+            android:name=".FlatFeeCalculator"
             android:theme="@style/settingTheme" />
         <activity
             android:name=".SignUpActivity"
@@ -79,8 +79,13 @@
         <activity
             android:name=".QRCodeActivity"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
-        <activity android:name=".QRCodeScanner" android:theme="@android:style/Theme.NoTitleBar.Fullscreen"/>
-        <activity android:name=".UserListActivity" android:theme="@android:style/Theme.NoTitleBar.Fullscreen"/>
+        <activity
+            android:name=".QRCodeScanner"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+        <activity
+            android:name=".UserListActivity"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+        <activity android:name=".HomeValueActivity" android:theme="@style/customTheme"></activity>
     </application>
 
 </manifest>

@@ -26,7 +26,7 @@
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
-        android:text="Flat Free Calculator"
+        android:text="Flat Fee Calculator"
         android:textColor="@android:color/white"
         android:textSize="20sp"/>
 

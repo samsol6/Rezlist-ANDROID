@@ -2,12 +2,12 @@ package com.example.e_tecklaptop.testproject;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-
-
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -45,15 +45,12 @@ import java.util.List;
 
 import cz.msebera.android.httpclient.Header;
 
-import static junit.framework.Assert.assertEquals;
+public class HomeValueActivity extends AppCompatActivity implements View.OnClickListener {
 
-
-public class SearchActivity extends AppCompatActivity implements View.OnClickListener {
-
-    ImageView profile, setting, location, calculator_button, notification_button , MenuButton;
+    ImageView profile, setting, location, calculator_button, notification_button, MenuButton;
     RelativeLayout menu;
     EditText searchInput;
-    TextView FirstDescription, SecondDescription, ThirdDescription, FourDescription, FiveDescription , LaunchScanner;
+    TextView FirstDescription, SecondDescription, ThirdDescription, FourDescription, FiveDescription, LaunchScanner;
 
     static final String username = "nate@teamwinnett.com";
     static final String password = "cloud1234";
@@ -73,12 +70,10 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
     List<MyLatLng> myLatLngsList = new ArrayList<MyLatLng>();
 
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_search);
+        setContentView(R.layout.activity_home_value);
         setupUI(findViewById(R.id.mainPanel));
 
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
@@ -87,7 +82,7 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
         RegisterView();
         setListeners();
 
-        customDialog = new CustomDialog(SearchActivity.this);
+        customDialog = new CustomDialog(HomeValueActivity.this);
 
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
@@ -95,17 +90,16 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
 
         customDialog.ShowDialog();
 
-        if(!apiRun) {
+        if (!apiRun) {
 
             ListApi();
         }
 
 
-
     }
 
     @Override
-    protected void onResume(){
+    protected void onResume() {
         super.onResume();
     }
 
@@ -140,7 +134,7 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
         if (!(view instanceof EditText)) {
             view.setOnTouchListener(new View.OnTouchListener() {
                 public boolean onTouch(View v, MotionEvent event) {
-                    hideSoftKeyboard(SearchActivity.this);
+                    hideSoftKeyboard(HomeValueActivity.this);
                     return false;
                 }
             });
@@ -184,49 +178,46 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
         int id = v.getId();
         switch (id) {
             case R.id.profile_button:
-                Intent imageIntent = new Intent(SearchActivity.this, DashBoardActivity.class);
+                Intent imageIntent = new Intent(HomeValueActivity.this, DashBoardActivity.class);
                 startActivity(imageIntent);
                 break;
             case R.id.setting_button:
-                Intent setting_intent = new Intent(SearchActivity.this, SupportActivity.class);
+                Intent setting_intent = new Intent(HomeValueActivity.this, SupportActivity.class);
                 startActivity(setting_intent);
                 break;
             case R.id.location_button:
 
-                if(checkLocationPermission()){
-                    Intent mapIntent = new Intent(SearchActivity.this, MapsActivity.class);
+                if (checkLocationPermission()) {
+                    Intent mapIntent = new Intent(HomeValueActivity.this, MapsActivity.class);
                     startActivity(mapIntent);
                 }
 
                 break;
 
             case R.id.bell_button:
-                Intent bell_intent = new Intent(SearchActivity.this, NotificationSettingActivity.class);
+                Intent bell_intent = new Intent(HomeValueActivity.this, NotificationSettingActivity.class);
                 startActivity(bell_intent);
                 break;
             case R.id.calculator_button:
-                Intent cal_intent = new Intent(SearchActivity.this, FlatFeeCalculator.class);
+                Intent cal_intent = new Intent(HomeValueActivity.this, FlatFeeCalculator.class);
                 startActivity(cal_intent);
 
                 break;
             case R.id.menuButton:
-                if(menu.getVisibility() == View.GONE) {
+                if (menu.getVisibility() == View.GONE) {
                     menu.setVisibility(View.VISIBLE);
-                }else if(menu.getVisibility() == View.VISIBLE){
+                } else if (menu.getVisibility() == View.VISIBLE) {
                     menu.setVisibility(View.GONE);
                 }
                 break;
             case R.id.launchScanner:
-                Intent intent = new Intent(SearchActivity.this , QRCodeScanner.class);
+                Intent intent = new Intent(HomeValueActivity.this, QRCodeScanner.class);
                 startActivity(intent);
                 menu.setVisibility(View.GONE);
                 break;
 
         }
     }
-
-
-
 
 
     private void ListApi() {
@@ -246,98 +237,152 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
 
                         super.onSuccess(statusCode, headers, response);
 
-                        try {
-                            String roof, bath, beds, stories, area, address, photo, lat, lng;
 
-                            MapsActivity location = new MapsActivity();
-                            int y = 100;
-                            for (int i = 0; i <= response.length(); i++) {
+                        String roof, bath, beds, stories, area, address, photo, lat, lng;
 
-                                JSONObject firstEvent = null;
-                                try {
-                                    firstEvent = response.getJSONObject(i);
-                                    JSONObject data = firstEvent.getJSONObject("property");
-                                    JSONObject addressObj = firstEvent.getJSONObject("address");
-                                    JSONArray photoObj = firstEvent.getJSONArray("photos");
-                                    JSONObject latlngObj = firstEvent.getJSONObject("geo");
+                        MapsActivity location = new MapsActivity();
+                        int y = 100;
+                        for (int i = 0; i <= response.length(); i++) {
 
-                                    int price = firstEvent.getInt("listPrice");
+                            JSONObject firstEvent = null;
+                            try {
+                                firstEvent = response.getJSONObject(i);
+                                JSONObject data = firstEvent.getJSONObject("property");
+                                JSONObject addressObj = firstEvent.getJSONObject("address");
+                                JSONArray photoObj = firstEvent.getJSONArray("photos");
+                                JSONObject latlngObj = firstEvent.getJSONObject("geo");
 
-                                    roof = data.getString("roof");
-                                    bath = data.getString("bathsFull");
-                                    beds = data.getString("bedrooms");
-                                    stories = data.getString("stories");
-                                    area = data.getString("area");
-                                    address = addressObj.getString("full");
-                                    photo = photoObj.getString(1);
+                                int price = firstEvent.getInt("listPrice");
 
-                                    lat = latlngObj.getString("lat");
-                                    lng = latlngObj.getString("lng");
+                                roof = data.getString("roof");
+                                bath = data.getString("bathsFull");
+                                beds = data.getString("bedrooms");
+                                stories = data.getString("stories");
+                                area = data.getString("area");
+                                address = addressObj.getString("full");
+                                photo = photoObj.getString(1);
 
-                                    MyLatLng myLatLng = new MyLatLng();
-                                    myLatLng.setLat(Double.valueOf(lat));
-                                    myLatLng.setLng(Double.valueOf(lng));
+                                lat = latlngObj.getString("lat");
+                                lng = latlngObj.getString("lng");
 
-                                    SharedPreferences preferences = getSharedPreferences("MyLocations", Context.MODE_PRIVATE);
-                                    SharedPreferences.Editor editor = preferences.edit();
-                                    editor.putString(String.valueOf(i), lat);
-                                    editor.putString(String.valueOf(y), lng);
-                                    editor.commit();
-                                    y++;
-                                    myLatLngsList.add(myLatLng);
+                                MyLatLng myLatLng = new MyLatLng();
+                                myLatLng.setLat(Double.valueOf(lat));
+                                myLatLng.setLng(Double.valueOf(lng));
 
-                                    //             location.setMyLatLng(myLatLngsList);
+                                SharedPreferences preferences = getSharedPreferences("MyLocations", Context.MODE_PRIVATE);
+                                SharedPreferences.Editor editor = preferences.edit();
+                                editor.putString(String.valueOf(i), lat);
+                                editor.putString(String.valueOf(y), lng);
+                                editor.commit();
+                                y++;
+                                myLatLngsList.add(myLatLng);
+
+                                //             location.setMyLatLng(myLatLngsList);
 
 
+                                SharedPreferences checkPref = getSharedPreferences("MinMax", Context.MODE_PRIVATE);
+                                int minPrice = Integer.valueOf(checkPref.getString("min", ""));
+                                int maxPrice = Integer.valueOf(checkPref.getString("max", ""));
+                                String areaCheck = checkPref.getString("areaSqFt", "");
+                                String bedCheck = checkPref.getString("beds", "");
+
+                                int sqFeet = Integer.parseInt(areaCheck);
+                                int areaSqFt = Integer.parseInt(area);
+                                int sqFeetMin = sqFeet - 100;
+                                int sqFeetMax = sqFeet + 100;
+
+                                if (!(areaCheck.equals("")) && (bedCheck.equals(""))) {
+                                    if (price >= minPrice && price <= maxPrice) {
+                                        if (areaSqFt > sqFeetMin && areaSqFt < sqFeetMax) {
+                                            AddsItem item = new AddsItem();
+                                            item.setDescription(beds + " beds - " + bath + " baths - " + area + " SqFt");
+                                            item.setTitle(address);
+                                            item.setImage(photo);
+                                            item.setPrice(price);
+                                            dataItem.add(item);
+                                        }
+                                    }
+                                } else if (!(bedCheck.equals("")) && (areaCheck.equals(""))) {
+                                    if (price >= minPrice && price <= maxPrice && beds.equals(bedCheck)) {
+                                        AddsItem item = new AddsItem();
+                                        item.setDescription(beds + " beds - " + bath + " baths - " + area + " SqFt");
+                                        item.setTitle(address);
+                                        item.setImage(photo);
+                                        item.setPrice(price);
+                                        dataItem.add(item);
+                                    }
+                                } else if (!(bedCheck.equals("")) && !(areaCheck.equals(""))) {
+                                    if (price >= minPrice && price <= maxPrice && beds.equals(bedCheck)) {
+                                        if (areaSqFt > sqFeetMin && areaSqFt < sqFeetMax) {
+                                            AddsItem item = new AddsItem();
+                                            item.setDescription(beds + " beds - " + bath + " baths - " + area + " SqFt");
+                                            item.setTitle(address);
+                                            item.setImage(photo);
+                                            item.setPrice(price);
+                                            dataItem.add(item);
+                                        }
+                                    }
+                                } else if ((areaCheck.equals("")) && (bedCheck.equals("")) && price >= minPrice && price <= maxPrice) {
                                     AddsItem item = new AddsItem();
-                                    //          item.setDescription("roof: " + roof + ", bath: " + bath + " , stories: " + stories);
                                     item.setDescription(beds + " beds - " + bath + " baths - " + area + " SqFt");
                                     item.setTitle(address);
                                     item.setImage(photo);
                                     item.setPrice(price);
-                                    dataItem.add(i, item);
-
-                                    Log.e("object", firstEvent.toString());
-                                    Log.e("data", data.toString());
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
+                                    dataItem.add(item);
                                 }
 
+                                Log.e("object", firstEvent.toString());
+                                Log.e("data", data.toString());
+                            } catch (JSONException e) {
+                                e.printStackTrace();
                             }
 
-                            addAdapter = new AddAdapter(SearchActivity.this, dataItem);
-                            list.setAdapter(addAdapter);
-                            searchInput.addTextChangedListener(new TextWatcher() {
+                        }
+
+                        addAdapter = new AddAdapter(HomeValueActivity.this, dataItem);
+                        list.setAdapter(addAdapter);
+                        if (dataItem.isEmpty()) {
+                            AlertDialog.Builder builder = new AlertDialog.Builder(HomeValueActivity.this);
+                            builder.setTitle("Sorry!");
+                            builder.setMessage("The house you are looking for, with such information is not available.");
+                            builder.setNegativeButton("Ok", new DialogInterface.OnClickListener() {
                                 @Override
-                                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                                    addAdapter.getFilter().filter(s.toString());
-
-                                }
-
-                                @Override
-                                public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-                                }
-
-                                @Override
-                                public void afterTextChanged(Editable s) {
-
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
                                 }
                             });
 
-
-                            customDialog.HideDialog();
-                            apiRun = true;
-                        }catch (Exception e){
-                            Toast.makeText(SearchActivity.this,"Something went wrong , please try again",Toast.LENGTH_LONG).show();
+                            AlertDialog dialog = builder.create();
+                            dialog.show();
                         }
+                        searchInput.addTextChangedListener(new TextWatcher() {
+                            @Override
+                            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                                addAdapter.getFilter().filter(s.toString());
+
+                            }
+
+                            @Override
+                            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                            }
+
+                            @Override
+                            public void afterTextChanged(Editable s) {
+
+                            }
+                        });
+
+
+                        customDialog.HideDialog();
+                        apiRun = true;
                     }
 
                     @Override
                     public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
                         super.onFailure(statusCode, headers, throwable, errorResponse);
                         Log.e("fail object", "yaha ata ha");
-                        Toast.makeText(SearchActivity.this,"Something went wrong!!",Toast.LENGTH_LONG).show();
+                        Toast.makeText(HomeValueActivity.this, "Something went wrong!!", Toast.LENGTH_LONG).show();
                         customDialog.HideDialog();
                     }
 
@@ -345,7 +390,7 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
                     public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONArray errorResponse) {
                         super.onFailure(statusCode, headers, throwable, errorResponse);
                         Log.e("fail aray", "yaha ata ha");
-                        Toast.makeText(SearchActivity.this,"Something went wrong!!",Toast.LENGTH_LONG).show();
+                        Toast.makeText(HomeValueActivity.this, "Something went wrong!!", Toast.LENGTH_LONG).show();
                         customDialog.HideDialog();
                     }
 
@@ -353,7 +398,7 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
                     public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
                         super.onFailure(statusCode, headers, responseString, throwable);
                         Log.e("fail", "yaha ata ha");
-                        Toast.makeText(SearchActivity.this,"Something went wrong!!",Toast.LENGTH_LONG).show();
+                        Toast.makeText(HomeValueActivity.this, "Something went wrong!!", Toast.LENGTH_LONG).show();
                         customDialog.HideDialog();
                     }
 
@@ -361,7 +406,7 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
                     public void onSuccess(int statusCode, Header[] headers, String responseString) {
                         super.onSuccess(statusCode, headers, responseString);
                         Log.e("responseString", "yaha ata ha");
-                        Toast.makeText(SearchActivity.this,"Something went wrong!!",Toast.LENGTH_LONG).show();
+                        Toast.makeText(HomeValueActivity.this, "Something went wrong!!", Toast.LENGTH_LONG).show();
                         customDialog.HideDialog();
                     }
                 }
@@ -372,7 +417,7 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
 
     public boolean checkLocationPermission() {
 
-        if (ContextCompat.checkSelfPermission(this,  android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
 
             // Should we show an explanation?
             if (ActivityCompat.shouldShowRequestPermissionRationale(this,
@@ -380,7 +425,7 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
 
 
                 ActivityCompat.requestPermissions(this,
-                        new String[]{ android.Manifest.permission.ACCESS_FINE_LOCATION},
+                        new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
                         MY_PERMISSIONS_REQUEST_LOCATION);
 
 
@@ -388,7 +433,7 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
                 //Toast.makeText(this,"Inside ELSE Permission Check",Toast.LENGTH_SHORT).show();
                 // No explanation needed, we can request the permission.
                 ActivityCompat.requestPermissions(this,
-                        new String[]{ android.Manifest.permission.ACCESS_FINE_LOCATION},
+                        new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
                         MY_PERMISSIONS_REQUEST_LOCATION);
             }
             return false;
@@ -403,25 +448,16 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
         switch (requestCode) {
             case MY_PERMISSIONS_REQUEST_LOCATION:
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    Intent map = new Intent(SearchActivity.this, MapsActivity.class);
+                    Intent map = new Intent(HomeValueActivity.this, MapsActivity.class);
                     startActivity(map);
                 } else {
 
-                    Toast.makeText(SearchActivity.this , "Sorry!!! Permission Denied", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(HomeValueActivity.this, "Sorry!!! Permission Denied", Toast.LENGTH_SHORT).show();
                 }
         }
     }
 
 
-    private void searchAdd(){
-        int min =0 , max = 10 ;
-        StringBuilder search = new StringBuilder();
-
-        for (int i = min ; i<= max ; i++){
-            search.append(String.valueOf(i)+" ");
-        }
-    }
-
-
-    
 }
+
+

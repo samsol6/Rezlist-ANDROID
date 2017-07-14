@@ -25,7 +25,7 @@
 
 
     <TextView
-        android:layout_width="80dp"
+        android:layout_width="wrap_content"
         android:layout_height="30dp"
         android:layout_alignTop="@+id/imageLay"
         android:layout_marginTop="10dp"
@@ -35,7 +35,8 @@
         android:gravity="center"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
-        android:textColor="@android:color/white" />
+        android:textColor="@android:color/white"
+        android:id="@+id/price"/>
 
     <TextView
         android:id="@+id/address"

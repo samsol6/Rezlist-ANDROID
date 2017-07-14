@@ -17,7 +17,7 @@ import com.example.e_tecklaptop.testproject.utils.Location;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FlatFreeCalculateActivity extends AppCompatActivity implements View.OnClickListener {
+public class FlatFeeCalculator extends AppCompatActivity implements View.OnClickListener {
 
     ProgressDialog progressDialog;
     ProgressBar progressBar;

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.e_tecklaptop.testproject.FlatFreeCalculateActivity"
+    tools:context="com.example.e_tecklaptop.testproject.FlatFeeCalculator"
     android:background="#FFF1FBF9">
 
 
@@ -22,6 +22,7 @@
 
 
     <SeekBar
+        android:splitTrack="false"
         android:id="@+id/seekBar"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="match_parent"
@@ -31,6 +32,8 @@
         android:layout_marginTop="20dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
+        android:thumb="@drawable/seek"
+        android:progressDrawable="@drawable/seek_style"
         />
     
     <TextView
@@ -121,7 +124,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Service Free"
+                android:text="Service Fee"
                 android:textColor="@android:color/white"
                 android:layout_centerHorizontal="true"
                 android:layout_below="@+id/rez"
@@ -315,7 +318,6 @@
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:text="Comission"
-
                 />
 
             </RelativeLayout>

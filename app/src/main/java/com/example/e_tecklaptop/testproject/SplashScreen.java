@@ -1,7 +1,9 @@
 package com.example.e_tecklaptop.testproject;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Handler;
 import android.os.Bundle;
 import android.widget.ImageView;
@@ -31,8 +33,15 @@ public class SplashScreen extends Activity {
             public void run() {
                 // This method will be executed once the timer is over
                 // Start your app main activity
-                Intent i = new Intent(SplashScreen.this, SignInScreen.class);
-                startActivity(i);
+                SharedPreferences pref = getSharedPreferences("KeepMeLogIn", Context.MODE_PRIVATE);
+                String check = pref.getString("email", "");
+                if(check.equals("")){
+                    Intent i = new Intent(SplashScreen.this, SignInScreen.class);
+                    startActivity(i);
+                }else{
+                    Intent i = new Intent(SplashScreen.this, SearchActivity.class);
+                    startActivity(i);
+                }
 
                 // close this activity
                 finish();
