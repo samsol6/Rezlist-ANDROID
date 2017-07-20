@@ -1,0 +1,462 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.e_tecklaptop.testproject.FlatFeeCalculator"
+    android:background="#FFF1FBF9">
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="150000"
+        android:textSize="22sp"
+        android:textColor="@android:color/holo_blue_light"
+        android:layout_marginTop="20dp"
+        android:id="@+id/realValue"
+        android:gravity="center"
+        android:textStyle="bold"
+        />
+
+
+    <SeekBar
+        android:splitTrack="false"
+        android:id="@+id/seekBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/realValue"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:thumb="@drawable/seek"
+        android:progressDrawable="@drawable/seek_style"
+        />
+    
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/seekBar"
+        android:layout_alignLeft="@+id/seekBar"
+        android:layout_alignStart="@+id/seekBar"
+        android:text="150000"
+        android:textSize="20sp"
+        android:id="@+id/minValue"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/seekBar"
+        android:layout_alignRight="@+id/seekBar"
+        android:layout_alignEnd="@+id/seekBar"
+        android:text="3000000"
+        android:textSize="20sp"
+        android:id="@+id/maxValue"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="8"
+        android:id="@+id/heading"
+        android:orientation="horizontal"
+        android:layout_below="@+id/seekBar"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="40dp">
+
+        <RelativeLayout
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_weight="2"
+            android:background="@drawable/heading_background">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Agent"
+                android:textColor="@android:color/white"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_weight="2"
+            android:background="@drawable/heading_background"
+            android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Traditional"
+            android:textColor="@android:color/white"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:id="@+id/trad"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Comissions"
+                android:textColor="@android:color/white"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/trad"
+                />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_weight="2"
+            android:background="@drawable/heading_background"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rezlist"
+                android:textColor="@android:color/white"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:id="@+id/rez"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Service Fee"
+                android:textColor="@android:color/white"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/rez"
+                android:gravity="center_horizontal"
+                />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_weight="2"
+            android:background="@drawable/heading_background"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Your"
+                android:textColor="@android:color/white"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:id="@+id/usave"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Save"
+                android:textColor="@android:color/white"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/usave"
+                />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/heading"
+        android:id="@+id/row1">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="8"
+        android:orientation="horizontal"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+
+        >
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_weight="2"
+            android:gravity="center"
+            android:text="Seller's"
+            android:background="@drawable/column_backgound"
+             />
+
+        <TextView
+            android:text="4500"
+            android:layout_weight="2"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:gravity="center"
+            android:background="@drawable/column_backgound"
+            android:id="@+id/seller_tc"/>
+
+        <TextView
+            android:id="@+id/seller_rs"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_weight="2"
+            android:gravity="center"
+            android:text="3999"
+            android:textColor="@android:color/holo_blue_light"
+            android:background="@drawable/column_backgound"
+
+             />
+
+        <TextView
+            android:text="501"
+            android:layout_weight="2"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:gravity="center"
+            android:background="@drawable/column_backgound"
+            android:id="@+id/seller_save"
+            />
+
+    </LinearLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/row1"
+        android:id="@+id/row2">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="8"
+            android:orientation="horizontal"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+
+            >
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:text="Buyer's"
+                android:background="@drawable/column_backgound"
+                />
+
+            <TextView
+                android:id="@+id/buyer_tc"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_weight="2"
+                android:background="@drawable/column_backgound"
+                android:gravity="center"
+                android:text="4500" />
+
+            <TextView
+                android:id="@+id/buyer_rs"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_weight="2"
+                android:background="@drawable/column_backgound"
+                android:textColor="@android:color/holo_blue_light"
+                android:gravity="center"
+                android:text="3750"
+                />
+
+            <TextView
+                android:text="750"
+                android:layout_weight="2"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:gravity="center"
+                android:background="@drawable/column_backgound"
+                android:id="@+id/buyer_save"
+                />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/row2"
+        android:id="@+id/row3">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="8"
+            android:orientation="horizontal"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+
+            >
+
+            <RelativeLayout
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_weight="2"
+                android:background="@drawable/column_backgound"
+                android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Total"
+                android:layout_centerHorizontal="true"
+                android:layout_alignTop="@+id/textView9"
+                android:layout_marginTop="15dp"
+                android:visibility="visible"
+                />
+
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="Comission"
+                />
+
+            </RelativeLayout>
+            <TextView
+                android:id="@+id/tc"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_weight="2"
+                android:background="@drawable/column_backgound"
+                android:gravity="center"
+                android:text="9000"
+                />
+
+            <TextView
+                android:id="@+id/tc_rezService"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_weight="2"
+                android:background="@drawable/column_backgound"
+                android:gravity="center"
+                android:text="7749"
+                android:textColor="@android:color/holo_blue_light"
+               />
+
+            <TextView
+                android:text="1251"
+                android:layout_weight="2"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:gravity="center"
+                android:background="@drawable/heading_background"
+                android:textColor="@android:color/white"
+                android:id="@+id/tc_save"
+                />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/row3"
+        android:layout_centerHorizontal="true">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="For homes under"
+        android:textColor="@android:color/holo_blue_light"
+        android:textSize="15sp"
+        android:id="@+id/fText"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="  $850,000"
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="15sp"
+        android:id="@+id/sText"
+        android:layout_toRightOf="@+id/fText"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="  the fee is"
+        android:textColor="@android:color/holo_blue_light"
+        android:textSize="15sp"
+        android:id="@+id/tText"
+        android:layout_toRightOf="@+id/sText"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="  $3,999"
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="15sp"
+        android:id="@+id/Text"
+        android:layout_toRightOf="@+id/tText"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="For homes above"
+        android:textColor="@android:color/holo_blue_light"
+        android:textSize="15sp"
+        android:id="@+id/sixText"
+        android:layout_below="@+id/fText"
+        android:layout_marginTop="5dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/sText"
+        android:layout_marginTop="5dp"
+        android:text="  $850,000"
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="15sp"
+        android:id="@+id/sevebText"
+        android:layout_toRightOf="@+id/fText"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tText"
+        android:layout_marginTop="5dp"
+        android:text="  the fee is"
+        android:textColor="@android:color/holo_blue_light"
+        android:textSize="15sp"
+        android:id="@+id/eText"
+        android:layout_toRightOf="@+id/sText"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/fText"
+        android:layout_marginTop="5dp"
+        android:text="  $5,999"
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="15sp"
+        android:id="@+id/Text2"
+        android:layout_toRightOf="@+id/tText"/>
+
+    </RelativeLayout>
+
+
+
+
+
+</RelativeLayout>

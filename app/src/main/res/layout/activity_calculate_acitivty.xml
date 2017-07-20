@@ -430,27 +430,34 @@
             android:gravity="center"
             android:text="flat fee #3,999 if under $850,000 listing price if over it is $5,999"
             android:textSize="20sp"
-            android:textColor="@android:color/holo_blue_light"/>
+            android:textColor="@android:color/holo_blue_light"
+            android:id="@+id/staticText"
+            />
 
 
 
-
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/holo_red_dark"
+                android:text="GET HOME VALUE"
+                android:textColor="@android:color/white"
+                android:id="@+id/homeValueButton"
+                android:textStyle="bold"
+                android:layout_below="@+id/staticText"
+                android:layout_alignParentBottom="true"
+                />
 
 
 
         </RelativeLayout>
 
+
     </ScrollView>
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@android:color/holo_red_dark"
-        android:text="GET HOME VALUE"
-        android:textColor="@android:color/white"
-        android:id="@+id/homeValueButton"
-        android:textStyle="bold"
-        android:layout_alignParentBottom="true"
-      />
+
+
+
+
 
 
 

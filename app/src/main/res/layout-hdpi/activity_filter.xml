@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.e_tecklaptop.testproject.FilterActivity"
+    android:background="#FFF1FBF9">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Property Type"
+        android:textSize="20sp"
+        android:textColor="@android:color/black"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:id="@+id/propertyText" />
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@+id/propertyText"
+        android:layout_alignStart="@+id/propertyText"
+        android:layout_alignLeft="@+id/propertyText"
+        android:layout_marginRight="20dp"
+        android:id="@+id/propertyType"
+        />
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/PriceLay"
+        android:weightSum="10"
+        android:layout_below="@+id/propertyType">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="5">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Min Price"
+            android:textSize="20sp"
+            android:textColor="@android:color/black"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:id="@+id/minPrice"
+            />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@+id/minPrice"
+        android:layout_alignStart="@+id/minPrice"
+        android:layout_alignLeft="@+id/minPrice"
+        android:layout_marginRight="20dp"
+        android:id="@+id/minPrice_input"
+        android:hint="    Min Value $"
+        android:background="@drawable/edit_text_background"
+        android:layout_marginTop="10dp"
+        />
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="5">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Max Price"
+                android:textSize="20sp"
+                android:textColor="@android:color/black"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="20dp"
+                android:id="@+id/maxPrice"
+                />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_below="@+id/maxPrice"
+                android:layout_alignStart="@+id/maxPrice"
+                android:layout_alignLeft="@+id/maxPrice"
+                android:layout_marginRight="20dp"
+                android:id="@+id/maxPrice_input"
+                android:hint="    Max Value $"
+                android:background="@drawable/edit_text_background"
+                android:layout_marginTop="10dp"
+                />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/AreaLay"
+        android:weightSum="10"
+        android:layout_below="@+id/PriceLay">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="5">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sq.Ft."
+                android:textSize="20sp"
+                android:textColor="@android:color/black"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="20dp"
+                android:id="@+id/area"
+                />
+
+            <EditText
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_below="@+id/area"
+                android:layout_alignStart="@+id/area"
+                android:layout_alignLeft="@+id/area"
+                android:layout_marginRight="20dp"
+                android:id="@+id/area_input"
+                android:hint="    Any"
+                android:background="@drawable/edit_text_background"
+                />
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="5">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Beds"
+                android:textSize="20sp"
+                android:textColor="@android:color/black"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="20dp"
+                android:id="@+id/bedsTv"
+                />
+
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_below="@+id/bedsTv"
+                android:layout_alignStart="@+id/bedsTv"
+                android:layout_alignLeft="@+id/bedsTv"
+                android:layout_marginRight="20dp"
+                android:id="@+id/bed_spinner"
+                />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/AreaLay"
+            android:id="@+id/bathLay">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Baths"
+                android:textSize="20sp"
+                android:textColor="@android:color/black"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="20dp"
+                android:id="@+id/bathsTv"
+                />
+
+            <Spinner
+                android:layout_width="155dp"
+                android:layout_height="40dp"
+                android:layout_below="@+id/bathsTv"
+                android:layout_alignStart="@+id/bathsTv"
+                android:layout_alignLeft="@+id/bathsTv"
+                android:layout_marginRight="20dp"
+                android:id="@+id/bath_spinner"
+                />
+
+        </RelativeLayout>
+
+
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/radioLay"
+        android:layout_below="@+id/bathLay">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Status"
+            android:textSize="20sp"
+            android:textColor="@android:color/black"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:id="@+id/statusTv"
+            />
+        </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@id/radioLay"
+        android:layout_margin="20dp">
+
+            <RadioGroup
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/radioGroup"
+                android:orientation="vertical"
+                android:weightSum="10">
+
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="For Sale"
+                    android:id="@+id/forSale"
+                    android:layout_weight="2"
+                   />
+
+                <RadioButton
+                    android:id="@+id/pending"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Pending"
+                    android:layout_weight="2"
+                    />
+
+                <RadioButton
+                    android:id="@+id/sold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Sold"
+                    android:layout_weight="2"
+                    />
+
+                <RadioButton
+                    android:id="@+id/openHomes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Open Homes"
+                    android:layout_weight="2"
+                  />
+
+                <RadioButton
+                    android:id="@+id/new_radio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="New(Writing 7 days)"
+                    android:layout_weight="2"
+                  />
+
+                </RadioGroup>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+
+
+
+
+</RelativeLayout>

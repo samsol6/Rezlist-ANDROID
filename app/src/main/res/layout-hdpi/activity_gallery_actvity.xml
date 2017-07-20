@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.e_tecklaptop.testproject.TestActivity">
+    tools:context="com.example.e_tecklaptop.testproject.GalleryActvity">
 
 
-    <fragment
-        android:id="@+id/fragment"
-        android:name="com.example.e_tecklaptop.testproject.fragment.BlankFragment"
+    <android.support.v4.view.ViewPager
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-       />
+        android:layout_height="match_parent"
+        android:id="@+id/viewPager">
+    </android.support.v4.view.ViewPager>
+
 </RelativeLayout>

@@ -1,0 +1,464 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.e_tecklaptop.testproject.CalculateActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/menuBar">
+
+        <!--<include layout="@layout/my_menubar"/>-->
+
+    </RelativeLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/menuBar"
+        android:background="#FFF1FBF9">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/mainLayout">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="What are homes worth in my area?"
+                android:gravity="center"
+                android:textSize="20dp"
+                android:textColor="@android:color/black"
+                android:layout_margin="10dp"
+                android:id="@+id/titleTv"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="First Name"
+                android:textSize="20sp"
+                android:textColor="@android:color/holo_blue_light"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="20dp"
+                android:id="@+id/fname"
+                android:layout_below="@+id/titleTv"
+                />
+
+            <EditText
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_below="@+id/fname"
+                android:layout_alignStart="@+id/fname"
+                android:layout_alignLeft="@+id/fname"
+                android:layout_marginRight="20dp"
+                android:id="@+id/fname_input"
+                android:hint="Enter your first name"
+                android:paddingLeft="20dp"
+                android:background="@drawable/edit_text_background"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Last Name"
+                android:textSize="20sp"
+                android:textColor="@android:color/holo_blue_light"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="20dp"
+                android:id="@+id/lname"
+                android:layout_below="@+id/fname_input"
+                />
+
+            <EditText
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_below="@+id/lname"
+                android:layout_alignStart="@+id/lname"
+                android:layout_alignLeft="@+id/lname"
+                android:layout_marginRight="20dp"
+                android:id="@+id/lname_input"
+                android:hint="Enter your last name"
+                android:paddingLeft="20dp"
+                android:background="@drawable/edit_text_background"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Email"
+                android:textSize="20sp"
+                android:textColor="@android:color/holo_blue_light"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="20dp"
+                android:id="@+id/email"
+                android:layout_below="@+id/lname_input"
+                />
+
+            <EditText
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_below="@+id/email"
+                android:layout_alignStart="@+id/email"
+                android:layout_alignLeft="@+id/email"
+                android:layout_marginRight="20dp"
+                android:id="@+id/email_input"
+                android:hint="Enter your email"
+                android:paddingLeft="20dp"
+                android:background="@drawable/edit_text_background"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/infoLay"
+                android:weightSum="10"
+                android:layout_below="@+id/email_input">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="5">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Zip Code"
+                        android:textSize="20sp"
+                        android:textColor="@android:color/holo_blue_light"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginLeft="20dp"
+                        android:id="@+id/zipTv"
+                        />
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_below="@+id/zipTv"
+                        android:layout_alignStart="@+id/zipTv"
+                        android:layout_alignLeft="@+id/zipTv"
+                        android:layout_marginRight="20dp"
+                        android:id="@+id/zipCode_input"
+                        android:hint="Enter Zip Code"
+                        android:background="@drawable/edit_text_background"
+                        android:layout_marginTop="10dp"
+                        android:paddingLeft="15dp"
+                        />
+
+                </RelativeLayout>
+
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="5">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Phone #"
+                        android:textSize="20sp"
+                        android:textColor="@android:color/holo_blue_light"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginLeft="20dp"
+                        android:id="@+id/phoneTv"
+                        />
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_below="@+id/phoneTv"
+                        android:layout_alignStart="@+id/phoneTv"
+                        android:layout_alignLeft="@+id/phoneTv"
+                        android:layout_marginRight="20dp"
+                        android:id="@+id/phone_input"
+                        android:hint="Enter Phone #"
+                        android:background="@drawable/edit_text_background"
+                        android:layout_marginTop="10dp"
+                        android:paddingLeft="15dp"
+                        />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Personlize your report"
+                android:textSize="20sp"
+                android:textColor="@android:color/holo_blue_light"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="20dp"
+                android:id="@+id/Tv"
+                android:layout_below="@+id/infoLay"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="10"
+                android:layout_below="@+id/Tv"
+                android:layout_margin="20dp"
+                android:id="@+id/radioButton"
+                >
+
+                <RadioGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    >
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="5"
+                    android:text="I am a Buyer"
+                    android:id="@+id/radioBuyer"/>
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="5"
+                    android:text="I am a Seller"
+                    android:id="@+id/radioSeller"/>
+
+                </RadioGroup>
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/radioButton"
+                android:id="@+id/property_lay">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Property Type"
+                    android:textSize="20sp"
+                    android:textColor="@android:color/holo_blue_light"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:id="@+id/propertyText" />
+
+                <Spinner
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_below="@+id/propertyText"
+                    android:layout_alignStart="@+id/propertyText"
+                    android:layout_alignLeft="@+id/propertyText"
+                    android:layout_marginRight="20dp"
+                    android:id="@+id/propertyTypeSpinner"
+                    />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/property_lay"
+                android:id="@+id/baseInfoLay">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/PriceLay"
+                    android:weightSum="10"
+                    android:baselineAligned="false">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="5">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Min Price"
+                            android:textSize="20sp"
+                            android:textColor="@android:color/holo_blue_light"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginLeft="20dp"
+                            android:id="@+id/minPriceTV"
+                            />
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:layout_below="@+id/minPriceTV"
+                            android:layout_alignStart="@+id/minPriceTV"
+                            android:layout_alignLeft="@+id/minPriceTV"
+                            android:layout_marginRight="20dp"
+                            android:id="@+id/minPriceTv_input"
+                            android:hint="Min Value $"
+                            android:background="@drawable/edit_text_background"
+                            android:layout_marginTop="10dp"
+                            android:paddingLeft="15dp"
+                            android:inputType="number"
+                            />
+
+                    </RelativeLayout>
+
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="5">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Max Price"
+                            android:textSize="20sp"
+                            android:textColor="@android:color/holo_blue_light"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginLeft="20dp"
+                            android:id="@+id/maxPriceTv"
+                            />
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:layout_below="@+id/maxPriceTv"
+                            android:layout_alignStart="@+id/maxPriceTv"
+                            android:layout_alignLeft="@+id/maxPriceTv"
+                            android:layout_marginRight="20dp"
+                            android:id="@+id/maxPriceTv_input"
+                            android:hint="Max Value $"
+                            android:background="@drawable/edit_text_background"
+                            android:layout_marginTop="10dp"
+                            android:paddingLeft="15dp"
+                            android:inputType="number"
+                            />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/AreaLay"
+                    android:weightSum="10"
+                    android:layout_below="@+id/PriceLay">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="5">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Sq.Ft."
+                            android:textSize="20sp"
+                            android:textColor="@android:color/holo_blue_light"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginLeft="20dp"
+                            android:id="@+id/areaTv"
+                            />
+
+                        <EditText
+                            android:layout_marginTop="10dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:layout_below="@+id/areaTv"
+                            android:layout_alignStart="@+id/areaTv"
+                            android:layout_alignLeft="@+id/areaTv"
+                            android:layout_marginRight="20dp"
+                            android:id="@+id/areaTv_input"
+                            android:paddingLeft="15dp"
+                            android:hint="Any"
+                            android:background="@drawable/edit_text_background"
+                            android:inputType="number"
+                            />
+
+                    </RelativeLayout>
+
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="5">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Beds"
+                            android:textSize="20sp"
+                            android:textColor="@android:color/holo_blue_light"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginLeft="20dp"
+                            android:id="@+id/bedsTextView"
+                            />
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:layout_below="@+id/bedsTextView"
+                            android:layout_alignStart="@+id/bedsTextView"
+                            android:layout_alignLeft="@+id/bedsTextView"
+                            android:layout_marginRight="20dp"
+                            android:id="@+id/bed_input"
+                            android:hint="Any"
+                            android:paddingLeft="15dp"
+                            android:inputType="number"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/edit_text_background"
+                            />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+
+            </RelativeLayout>
+
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/baseInfoLay"
+            android:layout_margin="20dp"
+            android:gravity="center"
+            android:text="flat fee #3,999 if under $850,000 listing price if over it is $5,999"
+            android:textSize="20sp"
+            android:textColor="@android:color/holo_blue_light"
+            android:id="@+id/staticText"
+            />
+
+
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/holo_red_dark"
+                android:text="GET HOME VALUE"
+                android:textColor="@android:color/white"
+                android:id="@+id/homeValueButton"
+                android:textStyle="bold"
+                android:layout_below="@+id/staticText"
+                android:layout_alignParentBottom="true"
+                />
+
+
+
+        </RelativeLayout>
+
+
+    </ScrollView>
+
+
+
+
+
+
+
+
+</RelativeLayout>

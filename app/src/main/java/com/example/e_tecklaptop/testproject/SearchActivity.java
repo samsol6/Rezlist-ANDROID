@@ -11,17 +11,21 @@ import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -41,7 +45,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import cz.msebera.android.httpclient.Header;
 
@@ -67,6 +73,7 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
     AddAdapter addAdapter;
     ListView list;
     private boolean apiRun = false;
+    private  Toolbar toolbar ;
 
     ArrayList<AddsItem> dataItem = new ArrayList<AddsItem>();
 
@@ -80,18 +87,70 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
         setupUI(findViewById(R.id.mainPanel));
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
-        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-        getSupportActionBar().setCustomView(R.layout.actionbar);
+  //      getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+  //      getSupportActionBar().setCustomView(R.layout.actionbar);
+
 
         RegisterView();
         setListeners();
+
 
         customDialog = new CustomDialog(SearchActivity.this);
 
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
         list = (ListView) findViewById(R.id.addlist);
+
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                AddsItem item = (AddsItem) parent.getItemAtPosition(position);
+                String address =  item.getAddress();
+                String image = item.getImage();
+                String area = item.getArea();
+                String baths = item.getBaths();
+                String beds = item.getBeds();
+                String price = String.valueOf(item.getPrice());
+                String desc = item.getDescription();
+                String lat = item.getLatitude();
+                String lng = item.getLogitude();
+                String style = item.getStyle();
+                String property_type = item.getProperty_type();
+                String country = item.getCountry();
+                String mlsid = item.getMlsID();
+                String lotSize = item.getLotSize();
+                String built = item.getYearBuilt();
+                List<String> photoList = item.getAllPhotos();
+                Set<String> set = new HashSet<String>();
+                set.addAll(photoList);
+
+                SharedPreferences preferences = getSharedPreferences("ListDetails",Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putString("address",address);
+                editor.putString("image",image);
+                editor.putString("area",area);
+                editor.putString("baths",baths);
+                editor.putString("beds",beds);
+                editor.putString("price",price);
+                editor.putString("desc",desc);
+                editor.putString("lat",lat);
+                editor.putString("lng",lng);
+                editor.putString("style",style);
+                editor.putString("property_type",property_type);
+                editor.putString("country",country);
+                editor.putString("mlsID",mlsid);
+                editor.putString("lotSize",lotSize);
+                editor.putString("built",built);
+                editor.putStringSet("photoList", set);
+                editor.commit();
+
+                Intent intent = new Intent(SearchActivity.this , DetailsActivity.class);
+                startActivity(intent);
+            }
+        });
 
         customDialog.ShowDialog();
 
@@ -157,15 +216,16 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
 
 
     private void RegisterView() {
+
         profile = (ImageView) findViewById(R.id.profile_button);
         setting = (ImageView) findViewById(R.id.setting_button);
-        location = (ImageView) findViewById(R.id.location_button);
+        location = (ImageView) toolbar.findViewById(R.id.location_button);
         notification_button = (ImageView) findViewById(R.id.bell_button);
         calculator_button = (ImageView) findViewById(R.id.calculator_button);
-        searchInput = (EditText) findViewById(R.id.actionInput);
+        searchInput = (EditText) toolbar.findViewById(R.id.actionInput);
         MenuButton = (ImageView) findViewById(R.id.menuButton);
         LaunchScanner = (TextView) findViewById(R.id.launchScanner);
-        menu = (RelativeLayout) findViewById(R.id.customMenu);
+    //    menu = (RelativeLayout) findViewById(R.id.customMenu);
     }
 
     private void setListeners() {
@@ -174,10 +234,36 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
         location.setOnClickListener(this);
         notification_button.setOnClickListener(this);
         calculator_button.setOnClickListener(this);
-        MenuButton.setOnClickListener(this);
+ //       MenuButton.setOnClickListener(this);
         LaunchScanner.setOnClickListener(this);
     }
 
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.option_menu , menu);
+
+        // or you can write one line code {  getMenuInflator().inflate(R.menu.option_menu , menu); }
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()){
+            case R.id.qrcode:
+
+                Intent intent = new Intent(SearchActivity.this , QRCodeScanner.class);
+                startActivity(intent);
+
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
 
     @Override
     public void onClick(View v) {
@@ -210,16 +296,18 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
 
                 break;
             case R.id.menuButton:
-                if(menu.getVisibility() == View.GONE) {
+                /*if(menu.getVisibility() == View.GONE) {
                     menu.setVisibility(View.VISIBLE);
                 }else if(menu.getVisibility() == View.VISIBLE){
                     menu.setVisibility(View.GONE);
-                }
+                }*/
+                openOptionsMenu();
                 break;
             case R.id.launchScanner:
                 Intent intent = new Intent(SearchActivity.this , QRCodeScanner.class);
                 startActivity(intent);
                 menu.setVisibility(View.GONE);
+
                 break;
 
         }
@@ -247,7 +335,8 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
                         super.onSuccess(statusCode, headers, response);
 
                         try {
-                            String roof, bath, beds, stories, area, address, photo, lat, lng;
+                            String roof, bath, beds, stories, area, address, photo, lat, lng , description;
+                            String style , property_type , community , country , mlsId , lot_size , built;
 
                             MapsActivity location = new MapsActivity();
                             int y = 100;
@@ -261,18 +350,31 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
                                     JSONArray photoObj = firstEvent.getJSONArray("photos");
                                     JSONObject latlngObj = firstEvent.getJSONObject("geo");
 
-                                    int price = firstEvent.getInt("listPrice");
 
+                                    int price = firstEvent.getInt("listPrice");
                                     roof = data.getString("roof");
                                     bath = data.getString("bathsFull");
                                     beds = data.getString("bedrooms");
                                     stories = data.getString("stories");
                                     area = data.getString("area");
+                                    description = data.getString("lotDescription");
                                     address = addressObj.getString("full");
                                     photo = photoObj.getString(1);
-
                                     lat = latlngObj.getString("lat");
                                     lng = latlngObj.getString("lng");
+                                    style = data.getString("style");
+                                    property_type = data.getString("type");
+                                    built = data.getString("yearBuilt");
+                                    lot_size = data.getString("lotSize");
+                                    country = addressObj.getString("country");
+                                    mlsId = (String) firstEvent.getString("mlsId");
+
+
+                                    List<String> allPhotos = new ArrayList<String>();
+                                    for( int z=0 ; z<photoObj.length();z++){
+                                        allPhotos.add(photoObj.getString(z));
+                                    }
+
 
                                     MyLatLng myLatLng = new MyLatLng();
                                     myLatLng.setLat(Double.valueOf(lat));
@@ -291,10 +393,22 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
 
                                     AddsItem item = new AddsItem();
                                     //          item.setDescription("roof: " + roof + ", bath: " + bath + " , stories: " + stories);
-                                    item.setDescription(beds + " beds - " + bath + " baths - " + area + " SqFt");
-                                    item.setTitle(address);
+                                    item.setDescription(description);
+                                    item.setBeds(beds);
+                                    item.setBaths(bath);
+                                    item.setArea(area);
+                                    item.setAddress(address);
                                     item.setImage(photo);
                                     item.setPrice(price);
+                                    item.setLatitude(lat);
+                                    item.setLogitude(lng);
+                                    item.setAllPhotos(allPhotos);
+                                    item.setStyle(style);
+                                    item.setProperty_type(property_type);
+                                    item.setMlsID(mlsId);
+                                    item.setCountry(country);
+                                    item.setYearBuilt(built);
+                                    item.setLotSize(lot_size);
                                     dataItem.add(i, item);
 
                                     Log.e("object", firstEvent.toString());
@@ -307,6 +421,7 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
 
                             addAdapter = new AddAdapter(SearchActivity.this, dataItem);
                             list.setAdapter(addAdapter);
+
                             searchInput.addTextChangedListener(new TextWatcher() {
                                 @Override
                                 public void beforeTextChanged(CharSequence s, int start, int count, int after) {

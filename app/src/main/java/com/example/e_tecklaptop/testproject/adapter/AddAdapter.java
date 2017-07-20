@@ -1,11 +1,8 @@
 package com.example.e_tecklaptop.testproject.adapter;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,14 +16,7 @@ import com.example.e_tecklaptop.testproject.R;
 import com.example.e_tecklaptop.testproject.model.AddsItem;
 import com.squareup.picasso.Picasso;
 
-import org.w3c.dom.Text;
-
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
 
 public class AddAdapter extends BaseAdapter implements Filterable{
 
@@ -65,9 +55,12 @@ public class AddAdapter extends BaseAdapter implements Filterable{
         if (convertView == null) {
             convertView = inflater.inflate(R.layout.add_adapter, null);
             holder.address = (TextView) convertView.findViewById(R.id.address);
-            holder.description = (TextView) convertView.findViewById(R.id.hdesc);
+       //     holder.description = (TextView) convertView.findViewById(R.id.hdesc);
             holder.addImage = (ImageView) convertView.findViewById(R.id.AddImage);
             holder.price = (TextView) convertView.findViewById(R.id.price);
+            holder.beds = (TextView) convertView.findViewById(R.id.beds);
+            holder.baths = (TextView) convertView.findViewById(R.id.bath);
+            holder.area = (TextView) convertView.findViewById(R.id.sqFt);
             holder.addImage.setColorFilter(Color.BLACK , PorterDuff.Mode.LIGHTEN);
 
             convertView.setTag(holder);  // set all the views in convert view through tag.
@@ -78,9 +71,12 @@ public class AddAdapter extends BaseAdapter implements Filterable{
 
         AddsItem item = new AddsItem();
         item = (AddsItem) getItem(position);
-        holder.address.setText(item.getTitle());
-        holder.description.setText(item.getDescription());
-        holder.price.setText(String.valueOf(item.getPrice()) + " $");
+        holder.address.setText(item.getAddress());
+   //     holder.description.setText(item.getDescription());
+        holder.price.setText(String.valueOf("$"+item.getPrice()));
+        holder.beds.setText(item.getBeds());
+        holder.baths.setText(item.getBaths());
+        holder.area.setText(item.getArea());
 
         Picasso.with(context)
                 .load(item.getImage()).fit()
@@ -111,13 +107,25 @@ public class AddAdapter extends BaseAdapter implements Filterable{
             if(constraint!=null && constraint.length()>0){
                 ArrayList<AddsItem> filterList=new ArrayList<AddsItem>();
                 for(int i=0;i<arraylist.size();i++){
-                    if((arraylist.get(i).getTitle().toUpperCase())
+                    if((arraylist.get(i).getAddress().toUpperCase())
                             .contains(constraint.toString().toUpperCase())) {
                         AddsItem item = new AddsItem();
-                        item.setTitle(arraylist.get(i).getTitle());
+                        item.setAddress(arraylist.get(i).getAddress());
                         item.setDescription(arraylist.get(i).getDescription());
                         item.setImage(arraylist.get(i).getImage());
                         item.setPrice(arraylist.get(i).getPrice());
+                        item.setBeds(arraylist.get(i).getBeds());
+                        item.setBaths(arraylist.get(i).getBaths());
+                        item.setArea(arraylist.get(i).getArea());
+                        item.setStyle(arraylist.get(i).getStyle());
+                        item.setProperty_type(arraylist.get(i).getProperty_type());
+                        item.setCountry(arraylist.get(i).getCountry());
+                        item.setMlsID(arraylist.get(i).getMlsID());
+                        item.setYearBuilt(arraylist.get(i).getYearBuilt());
+                        item.setLotSize(arraylist.get(i).getLotSize());
+                        item.setLatitude(arraylist.get(i).getLatitude());
+                        item.setLogitude(arraylist.get(i).getLogitude());
+                        item.setAllPhotos(arraylist.get(i).getAllPhotos());
                         filterList.add(item);
                     }
                 }
@@ -146,5 +154,8 @@ public class AddAdapter extends BaseAdapter implements Filterable{
         TextView description;
         ImageView addImage;
         TextView price;
+        TextView beds;
+        TextView baths;
+        TextView area;
     }
 }

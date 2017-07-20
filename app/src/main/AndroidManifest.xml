@@ -85,7 +85,16 @@
         <activity
             android:name=".UserListActivity"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
-        <activity android:name=".HomeValueActivity" android:theme="@style/customTheme"></activity>
+        <activity
+            android:name=".HomeValueActivity"
+            android:theme="@style/customTheme" />
+        <activity
+            android:name=".DetailsActivity"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+        <activity
+            android:name=".ShowHouseOnMap"
+            android:label="@string/title_activity_show_house_on_map" />
+        <activity android:name=".GalleryActvity"  android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
     </application>
 
 </manifest>
