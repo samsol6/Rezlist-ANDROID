@@ -15,17 +15,18 @@
         android:layout_height="wrap_content"
         android:id="@+id/toolbar"
         android:background="@android:color/white"
-       >
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/customMenu">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-           >
+            >
 
             <ImageView
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:background="@drawable/location_button"
+                android:background="@drawable/location"
                 android:layout_margin="8dp"
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
@@ -93,29 +94,29 @@
         android:visibility="gone">
 
         <include layout="@layout/custom_menu"
-        />
+            />
 
     </RelativeLayout>
 
 
 
 
-     <RelativeLayout
-         android:layout_width="match_parent"
-         android:layout_height="match_parent"
-         android:layout_below="@+id/layout">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/layout">
 
-         <ListView
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             android:id="@+id/addlist"
-             android:divider="@null"
-             android:dividerHeight="0dp"
-             />
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/addlist"
+            android:divider="@null"
+            android:dividerHeight="0dp"
+            />
 
 
 
-     </RelativeLayout>
+    </RelativeLayout>
 
 
 

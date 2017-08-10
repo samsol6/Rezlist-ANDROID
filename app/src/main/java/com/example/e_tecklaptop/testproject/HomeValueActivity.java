@@ -34,8 +34,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.e_tecklaptop.testproject.adapter.AddAdapter;
+import com.example.e_tecklaptop.testproject.database.MyDBHandler;
+import com.example.e_tecklaptop.testproject.database.PhotoDBHandler;
 import com.example.e_tecklaptop.testproject.model.AddsItem;
+import com.example.e_tecklaptop.testproject.model.Images;
 import com.example.e_tecklaptop.testproject.model.MyLatLng;
+import com.example.e_tecklaptop.testproject.utils.Const;
 import com.example.e_tecklaptop.testproject.utils.CustomDialog;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
@@ -75,6 +79,8 @@ public class HomeValueActivity extends AppCompatActivity implements View.OnClick
 
     List<MyLatLng> myLatLngsList = new ArrayList<MyLatLng>();
     private Toolbar toolbar;
+    private PhotoDBHandler photoDBHandler;
+    private MyDBHandler dbHandler;
 
 
     @Override
@@ -94,6 +100,9 @@ public class HomeValueActivity extends AppCompatActivity implements View.OnClick
 
         customDialog = new CustomDialog(HomeValueActivity.this);
 
+        photoDBHandler = new PhotoDBHandler(HomeValueActivity.this, null, null, 2);
+        dbHandler = new MyDBHandler(HomeValueActivity.this, null, null, 3);
+
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
         listView = (ListView) findViewById(R.id.addlist);
@@ -102,12 +111,13 @@ public class HomeValueActivity extends AppCompatActivity implements View.OnClick
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 AddsItem item = (AddsItem) parent.getItemAtPosition(position);
-                String address =  item.getAddress();
+                int propertyID = item.getId();
+                String address = item.getAddress();
                 String image = item.getImage();
                 String area = item.getArea();
                 String baths = item.getBaths();
                 String beds = item.getBeds();
-                String price = String.valueOf(item.getPrice());
+                String price = item.getPrice();
                 String desc = item.getDescription();
                 String lat = item.getLatitude();
                 String lng = item.getLogitude();
@@ -117,31 +127,42 @@ public class HomeValueActivity extends AppCompatActivity implements View.OnClick
                 String mlsid = item.getMlsID();
                 String lotSize = item.getLotSize();
                 String built = item.getYearBuilt();
-                List<String> photoList = item.getAllPhotos();
+                String allImages = item.getInsertAllImages();
+                ArrayList<ArrayList<String>> plist = item.getAllPhotos();
+                ArrayList<Images> imagesArrayList = new ArrayList<Images>();
+                imagesArrayList = photoDBHandler.findItems(propertyID);
+
+                List<String> photoList = new ArrayList<String>();
+
+                for (int i = 0; i < imagesArrayList.size(); i++) {
+                    photoList.add(imagesArrayList.get(i).getImage());
+                }
+                //          ArrayList<Images> photoList = photoDBHandler.findItems();
                 Set<String> set = new HashSet<String>();
                 set.addAll(photoList);
 
-                SharedPreferences preferences = getSharedPreferences("ListDetails",Context.MODE_PRIVATE);
+                SharedPreferences preferences = getSharedPreferences("ListDetails", Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = preferences.edit();
-                editor.putString("address",address);
-                editor.putString("image",image);
-                editor.putString("area",area);
-                editor.putString("baths",baths);
-                editor.putString("beds",beds);
-                editor.putString("price",price);
-                editor.putString("desc",desc);
-                editor.putString("lat",lat);
-                editor.putString("lng",lng);
-                editor.putString("style",style);
-                editor.putString("property_type",property_type);
-                editor.putString("country",country);
-                editor.putString("mlsID",mlsid);
-                editor.putString("lotSize",lotSize);
-                editor.putString("built",built);
+                editor.putString("address", address);
+                editor.putString("image", image);
+                editor.putString("area", area);
+                editor.putString("baths", baths);
+                editor.putString("beds", beds);
+                editor.putString("price", price);
+                editor.putString("desc", desc);
+                editor.putString("lat", lat);
+                editor.putString("lng", lng);
+                editor.putString("style", style);
+                editor.putString("property_type", property_type);
+                editor.putString("country", country);
+                editor.putString("mlsID", mlsid);
+                editor.putString("lotSize", lotSize);
+                editor.putString("built", built);
                 editor.putStringSet("photoList", set);
+                editor.putString("insertAllImages", allImages);
                 editor.commit();
 
-                Intent intent = new Intent(HomeValueActivity.this , DetailsActivity.class);
+                Intent intent = new Intent(HomeValueActivity.this, DetailsActivity.class);
                 startActivity(intent);
             }
         });
@@ -308,7 +329,7 @@ public class HomeValueActivity extends AppCompatActivity implements View.OnClick
     private void ListApi() {
         AsyncHttpClient client = new AsyncHttpClient();
         //   client.setBasicAuth("username", "password");
-        client.setBasicAuth("simplyrets", "simplyrets");
+        client.setBasicAuth(Const.AUTH, Const.AUTH);
         client.get("https://api.simplyrets.com/properties?limit=500&lastId=0", null, new JsonHttpResponseHandler() {
 
                     @Override
@@ -358,10 +379,7 @@ public class HomeValueActivity extends AppCompatActivity implements View.OnClick
                                 mlsId = (String) firstEvent.getString("mlsId");
 
 
-                                List<String> allPhotos = new ArrayList<String>();
-                                for( int z=0 ; z<photoObj.length();z++){
-                                    allPhotos.add(photoObj.getString(z));
-                                }
+                                ArrayList<String> allPhotos = new ArrayList<String>();
 
                                 MyLatLng myLatLng = new MyLatLng();
                                 myLatLng.setLat(Double.valueOf(lat));
@@ -396,17 +414,15 @@ public class HomeValueActivity extends AppCompatActivity implements View.OnClick
                                     if (price >= minPrice && price <= maxPrice) {
                                         if (areaSqFt > sqFeetMin && areaSqFt < sqFeetMax) {
                                             AddsItem item = new AddsItem();
-                                   //         item.setDescription(beds + " beds - " + bath + " baths - " + area + " SqFt");
                                             item.setDescription(description);
                                             item.setBeds(beds);
                                             item.setBaths(bath);
                                             item.setArea(area);
                                             item.setAddress(address);
                                             item.setImage(photo);
-                                            item.setPrice(price);
+                                            item.setPrice(String.valueOf(price));
                                             item.setLatitude(lat);
                                             item.setLogitude(lng);
-                                            item.setAllPhotos(allPhotos);
                                             item.setStyle(style);
                                             item.setProperty_type(property_type);
                                             item.setMlsID(mlsId);
@@ -414,22 +430,35 @@ public class HomeValueActivity extends AppCompatActivity implements View.OnClick
                                             item.setYearBuilt(built);
                                             item.setLotSize(lot_size);
                                             dataItem.add(item);
+
+                                            ArrayList<AddsItem> propertyData = dbHandler.findItems();
+
+                                            int pID = propertyData.get(propertyData.size()-1).getId();
+
+                                            for (int z = 0; z < photoObj.length(); z++) {
+
+                                                allPhotos.add(photoObj.getString(z));
+                                                Images images = new Images();
+                                                images.setImage(photoObj.getString(z));
+                                                images.setPropertyID(pID);
+                                                //      allPhotos.add(images);
+                                                photoDBHandler.addImage(images);
+
+                                            }
                                         }
                                     }
                                 } else if (!(bedCheck.equals("")) && (areaCheck.equals(""))) {
                                     if (price >= minPrice && price <= maxPrice && beds.equals(bedCheck)) {
                                         AddsItem item = new AddsItem();
-                               //         item.setDescription(beds + " beds - " + bath + " baths - " + area + " SqFt");
                                         item.setDescription(description);
                                         item.setBeds(beds);
                                         item.setBaths(bath);
                                         item.setArea(area);
                                         item.setAddress(address);
                                         item.setImage(photo);
-                                        item.setPrice(price);
+                                        item.setPrice(String.valueOf(price));
                                         item.setLatitude(lat);
                                         item.setLogitude(lng);
-                                        item.setAllPhotos(allPhotos);
                                         item.setStyle(style);
                                         item.setProperty_type(property_type);
                                         item.setMlsID(mlsId);
@@ -437,22 +466,35 @@ public class HomeValueActivity extends AppCompatActivity implements View.OnClick
                                         item.setYearBuilt(built);
                                         item.setLotSize(lot_size);
                                         dataItem.add(item);
+
+                                        ArrayList<AddsItem> propertyData = dbHandler.findItems();
+
+                                        int pID = propertyData.get(propertyData.size()-1).getId();
+
+                                        for (int z = 0; z < photoObj.length(); z++) {
+
+                                            allPhotos.add(photoObj.getString(z));
+                                            Images images = new Images();
+                                            images.setImage(photoObj.getString(z));
+                                            images.setPropertyID(pID);
+                                            //      allPhotos.add(images);
+                                            photoDBHandler.addImage(images);
+
+                                        }
                                     }
                                 } else if (!(bedCheck.equals("")) && !(areaCheck.equals(""))) {
                                     if (price >= minPrice && price <= maxPrice && beds.equals(bedCheck)) {
                                         if (areaSqFt > sqFeetMin && areaSqFt < sqFeetMax) {
                                             AddsItem item = new AddsItem();
-                                        //    item.setDescription(beds + " beds - " + bath + " baths - " + area + " SqFt");
                                             item.setDescription(description);
                                             item.setBeds(beds);
                                             item.setBaths(bath);
                                             item.setArea(area);
                                             item.setAddress(address);
                                             item.setImage(photo);
-                                            item.setPrice(price);
+                                            item.setPrice(String.valueOf(price));
                                             item.setLatitude(lat);
                                             item.setLogitude(lng);
-                                            item.setAllPhotos(allPhotos);
                                             item.setStyle(style);
                                             item.setProperty_type(property_type);
                                             item.setMlsID(mlsId);
@@ -460,28 +502,57 @@ public class HomeValueActivity extends AppCompatActivity implements View.OnClick
                                             item.setYearBuilt(built);
                                             item.setLotSize(lot_size);
                                             dataItem.add(item);
+
+                                            ArrayList<AddsItem> propertyData = dbHandler.findItems();
+
+                                            int pID = propertyData.get(propertyData.size()-1).getId();
+
+                                            for (int z = 0; z < photoObj.length(); z++) {
+
+                                                allPhotos.add(photoObj.getString(z));
+                                                Images images = new Images();
+                                                images.setImage(photoObj.getString(z));
+                                                images.setPropertyID(pID);
+                                                //      allPhotos.add(images);
+                                                photoDBHandler.addImage(images);
+
+                                            }
                                         }
                                     }
                                 } else if ((areaCheck.equals("")) && (bedCheck.equals("")) && price >= minPrice && price <= maxPrice) {
                                     AddsItem item = new AddsItem();
                                //     item.setDescription(beds + " beds - " + bath + " baths - " + area + " SqFt");
-                                    item.setDescription(description);
-                                    item.setBeds(beds);
-                                    item.setBaths(bath);
-                                    item.setArea(area);
-                                    item.setAddress(address);
-                                    item.setImage(photo);
-                                    item.setPrice(price);
-                                    item.setLatitude(lat);
-                                    item.setLogitude(lng);
-                                    item.setAllPhotos(allPhotos);
-                                    item.setStyle(style);
-                                    item.setProperty_type(property_type);
-                                    item.setMlsID(mlsId);
-                                    item.setCountry(country);
-                                    item.setYearBuilt(built);
-                                    item.setLotSize(lot_size);
-                                    dataItem.add(item);
+                                    AddsItem addsItem = new AddsItem();
+                                    addsItem.setDescription(description);
+                                    addsItem.setBeds(beds);
+                                    addsItem.setBaths(bath);
+                                    addsItem.setArea(area);
+                                    addsItem.setAddress(address);
+                                    addsItem.setImage(photo);
+                                    addsItem.setPrice(String.valueOf(price));
+                                    addsItem.setLatitude(lat);
+                                    addsItem.setLogitude(lng);
+                                    addsItem.setStyle(style);
+                                    addsItem.setProperty_type(property_type);
+                                    addsItem.setMlsID(mlsId);
+                                    addsItem.setCountry(country);
+                                    addsItem.setYearBuilt(built);
+                                    addsItem.setLotSize(lot_size);
+                                    dataItem.add(addsItem);
+
+                                    ArrayList<AddsItem> propertyData = dbHandler.findItems();
+
+                                    int pID = propertyData.get(propertyData.size()-1).getId();
+
+                                    for (int z = 0; z < photoObj.length(); z++) {
+
+                                        allPhotos.add(photoObj.getString(z));
+                                        Images images = new Images();
+                                        images.setImage(photoObj.getString(z));
+                                        images.setPropertyID(pID);
+                                        photoDBHandler.addImage(images);
+
+                                    }
                                 }
 
                                 Log.e("object", firstEvent.toString());
@@ -566,6 +637,19 @@ public class HomeValueActivity extends AppCompatActivity implements View.OnClick
 
 
         );
+    }
+
+    public static String convertArrayToString(ArrayList<String> array){
+        String str = "" , strSeparator="";
+
+        for (int i = 0;i<array.size(); i++) {
+            str = str+array.get(i);
+            // Do not append comma at the end of last element
+            if(i<array.size()-1){
+                str = str+strSeparator;
+            }
+        }
+        return str;
     }
 
     public boolean checkLocationPermission() {

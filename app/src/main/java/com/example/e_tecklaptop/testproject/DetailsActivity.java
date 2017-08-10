@@ -18,7 +18,7 @@ import org.w3c.dom.Text;
 public class DetailsActivity extends Activity implements View.OnClickListener {
 
 
-    String address ,image ,area ,baths ,beds ,price , desc , styleS , propertyS , communityS , countryS , mlsS , lot_sizeS ;
+    String address ,image ,area ,baths ,beds ,price , desc , styleS , propertyS , communityS , countryS , mlsS , lot_sizeS , allImages ;
     RelativeLayout StreetView , gallery;
     private ImageView imageTv , mapView;
     private TextView addressTv , areaTv , bathsTv , bedsTv , priceTv , house_address , house_description;

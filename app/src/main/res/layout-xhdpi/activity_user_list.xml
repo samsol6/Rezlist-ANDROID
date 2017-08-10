@@ -9,7 +9,7 @@
 
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="1000dp"
+        android:layout_height="450dp"
         android:background="@drawable/file_icon"
         android:visibility="visible"
         android:id="@+id/file"
@@ -20,22 +20,22 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:text="Tap file to send users info to your email"
-        android:textSize="30sp"
+        android:textSize="18sp"
         android:visibility="visible"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="5dp"
         />
 
-   <!-- <Button
-        android:id="@+id/userList_Button"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_centerHorizontal="true"
-        android:text="Download Accounts Info"
-        android:layout_alignParentBottom="true"
-        android:onClick="Rescan"
-        android:background="@android:color/holo_blue_dark"
-        android:textColor="@android:color/white"
-        android:textStyle="bold"/>-->
+    <!-- <Button
+         android:id="@+id/userList_Button"
+         android:layout_width="match_parent"
+         android:layout_height="50dp"
+         android:layout_centerHorizontal="true"
+         android:text="Download Accounts Info"
+         android:layout_alignParentBottom="true"
+         android:onClick="Rescan"
+         android:background="@android:color/holo_blue_dark"
+         android:textColor="@android:color/white"
+         android:textStyle="bold"/>-->
 
 </RelativeLayout>

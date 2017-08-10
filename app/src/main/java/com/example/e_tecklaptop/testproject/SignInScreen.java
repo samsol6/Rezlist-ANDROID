@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -17,6 +18,7 @@ import android.widget.Toast;
 import com.example.e_tecklaptop.testproject.Api.ResInterface;
 import com.example.e_tecklaptop.testproject.Api.SiginApi;
 import com.example.e_tecklaptop.testproject.Api.User;
+import com.example.e_tecklaptop.testproject.utils.Const;
 import com.example.e_tecklaptop.testproject.utils.CustomDialog;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -121,7 +123,7 @@ public class SignInScreen extends Activity implements View.OnClickListener {
 
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(ResInterface.BASE_URL)
+                .baseUrl(Const.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -157,6 +159,11 @@ public class SignInScreen extends Activity implements View.OnClickListener {
                         i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(i);
                         finish();
+
+                        SharedPreferences signInPref = getSharedPreferences("checkSignIn", Context.MODE_PRIVATE);
+                        SharedPreferences.Editor signInPrefEditor = signInPref.edit();
+                        signInPrefEditor.putBoolean("signIn", true);
+                        signInPrefEditor.commit();
 
                         SharedPreferences pref = getSharedPreferences("KeepMeLogIn", Context.MODE_PRIVATE);
                         SharedPreferences.Editor peditor = pref.edit();
@@ -209,4 +216,12 @@ public class SignInScreen extends Activity implements View.OnClickListener {
 
     }*/
 
+    @Override
+    public void onBackPressed() {
+        SignInScreen.this.finish();
+        super.onBackPressed();
+        Intent intent = new Intent("com.example.e_tecklaptop.testproject");
+        LocalBroadcastManager localBroadcastManager = LocalBroadcastManager.getInstance(this);
+        localBroadcastManager.sendBroadcast(intent);
+    }
 }

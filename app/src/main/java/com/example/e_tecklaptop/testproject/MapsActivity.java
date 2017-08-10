@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.example.e_tecklaptop.testproject.adapter.AddAdapter;
 import com.example.e_tecklaptop.testproject.model.AddsItem;
 import com.example.e_tecklaptop.testproject.model.MyLatLng;
+import com.example.e_tecklaptop.testproject.utils.Const;
 import com.example.e_tecklaptop.testproject.utils.CustomDialog;
 import com.example.e_tecklaptop.testproject.utils.GPSTracker;
 import com.example.e_tecklaptop.testproject.utils.Location;
@@ -109,7 +110,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private void getLatLong() {
         AsyncHttpClient client = new AsyncHttpClient();
         //   client.setBasicAuth("username", "password");
-        client.setBasicAuth("simplyrets", "simplyrets");
+        client.setBasicAuth(Const.AUTH, Const.AUTH);
         client.get("https://api.simplyrets.com/properties?limit=500&lastId=0", null, new JsonHttpResponseHandler() {
 
                     @Override
@@ -128,7 +129,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
                         int y = 100 ;
-                        for (int i = 0; i <= response.length(); i++) {
+                        for (int i = 0; i < response.length(); i++) {
 
                             JSONObject firstEvent = null;
                             try {
@@ -147,7 +148,27 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                 myLatLng.setLng(Double.valueOf(lng));
                                 myLatLng.setArea(area);
 
-                                myLatLngsList.add(myLatLng);
+
+                                double myLat = gps.getLatitude();
+                                double myLng = gps.getLongitude();
+
+                                android.location.Location startPoint=new android.location.Location("CurrentLocation");
+                                startPoint.setLatitude(myLat);
+                                startPoint.setLongitude(myLng);
+
+                                android.location.Location endPoint=new android.location.Location("HouseLocation");
+                                endPoint.setLatitude(Double.valueOf(lat));
+                                endPoint.setLongitude(Double.valueOf(lng));
+
+                                double distance = startPoint.distanceTo(endPoint);
+
+                                Log.d("distance", String.valueOf(distance));
+
+                                if(distance < 5000.0){
+
+                                    myLatLngsList.add(myLatLng);
+                                }
+
 
 
 
@@ -206,10 +227,19 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private void MultipleMarkers() {
 
 
+       /* try {
+            for (int i = 0; i <= myLatLngsList.size(); i++) {
 
-        for (int i = 0; i < myLatLngsList.size(); i++) {
+                createMarker(myLatLngsList.get(i).getLat(), myLatLngsList.get(i).getLng(), myLatLngsList.get(i).getArea());
 
-            createMarker(myLatLngsList.get(i).getLat(),myLatLngsList.get(i).getLng() , myLatLngsList.get(i).getArea());
+            }
+        }catch (Exception e){
+            e.getMessage();
+        }*/
+        int size = myLatLngsList.size();
+        for (int i = 0; i < size; i++) {
+
+            createMarker(myLatLngsList.get(i).getLat(), myLatLngsList.get(i).getLng(), myLatLngsList.get(i).getArea());
 
         }
 
@@ -220,13 +250,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     protected void createMarker(double latitude, double longitude , String area) {
 
      // to do :  https://stackoverflow.com/questions/14828217/android-map-v2-zoom-to-show-all-the-markers
-     mMap.addMarker(new MarkerOptions()
-                .position(new LatLng(latitude, longitude))
-                .anchor(0.5f, 0.5f).title(area));
+     mMap.addMarker(new MarkerOptions().position(new LatLng(latitude, longitude)).anchor(0.5f, 0.5f).title(area));
         LatLng latlng = new LatLng(latitude, longitude);
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(latlng));
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latlng,
-                9)); // 17
+        SharedPreferences preferences = getSharedPreferences("Location",Context.MODE_PRIVATE);
+        boolean locationCheck =  preferences.getBoolean("location_access",false);
+        if(locationCheck) {
+            mMap.moveCamera(CameraUpdateFactory.newLatLng(latlng));
+            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latlng,
+                    12)); // 17
+        }
 
     }
 
@@ -235,11 +267,22 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap = googleMap;
 
         // Add a marker in Sydney and move the camera
-        LatLng florida_miami = new LatLng(latitude, longitude);
-        mMap.addMarker(new MarkerOptions().position(florida_miami).title("My Location"));
-       /* mMap.moveCamera(CameraUpdateFactory.newLatLng(florida_miami));
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(florida_miami,
-                17));*/
+        SharedPreferences preferences = getSharedPreferences("Location",Context.MODE_PRIVATE);
+        boolean locationCheck =  preferences.getBoolean("location_access",false);
+
+        if(locationCheck) {
+            LatLng latLng = new LatLng(latitude, longitude);
+            //     mMap.addMarker(new MarkerOptions().position(latLng).title("My Location"));
+            mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng,
+                    17));
+        }else{
+            LatLng california = new LatLng(36.778259, -119.417931);
+            //     mMap.addMarker(new MarkerOptions().position(florida_miami).title("My Location"));
+            mMap.moveCamera(CameraUpdateFactory.newLatLng(california));
+            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(california,
+                    15));
+        }
 
     }
 

@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.example.e_tecklaptop.testproject.Api.ResInterface;
 import com.example.e_tecklaptop.testproject.Api.SiginApi;
 import com.example.e_tecklaptop.testproject.Api.SignUpApi;
+import com.example.e_tecklaptop.testproject.utils.Const;
 import com.example.e_tecklaptop.testproject.utils.CustomDialog;
 
 import retrofit2.Call;
@@ -87,7 +88,7 @@ public class SignUpActivity extends Activity {
 
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(ResInterface.BASE_URL)
+                .baseUrl(Const.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 

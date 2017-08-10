@@ -17,7 +17,6 @@ import retrofit2.http.POST;
 
 public interface ResInterface {
 
-    String BASE_URL = "https://agile-depths-93396.herokuapp.com/api/v1/";
 
     @FormUrlEncoded
     @POST("signin")
@@ -35,7 +34,6 @@ public interface ResInterface {
     @FormUrlEncoded
     @POST("export")
     Call<SendEmailApi> sendEmail(@Field("email") String field1);
-
 
 
 }

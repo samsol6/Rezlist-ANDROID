@@ -18,6 +18,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <service android:name="com.example.e_tecklaptop.testproject.utils.ClosingService" android:stopWithTask="false"/>
         <activity
             android:name=".SplashScreen"
             android:label="@string/app_name"

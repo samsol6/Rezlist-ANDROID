@@ -14,6 +14,7 @@ import com.example.e_tecklaptop.testproject.Api.ResInterface;
 import com.example.e_tecklaptop.testproject.Api.SiginApi;
 import com.example.e_tecklaptop.testproject.Api.SignoutApi;
 import com.example.e_tecklaptop.testproject.Api.User;
+import com.example.e_tecklaptop.testproject.utils.Const;
 import com.example.e_tecklaptop.testproject.utils.CustomDialog;
 
 import java.io.File;
@@ -76,7 +77,14 @@ public class DashBoardActivity extends AppCompatActivity implements View.OnClick
                 SharedPreferences.Editor peditor = pref.edit();
                 peditor.putString("email", "");
                 peditor.commit();
+
+                SharedPreferences signInPref = getSharedPreferences("checkSignIn", Context.MODE_PRIVATE);
+                SharedPreferences.Editor signInPrefEditor = signInPref.edit();
+                signInPrefEditor.putBoolean("signIn", false);
+                signInPrefEditor.commit();
+
                 Intent logout = new Intent(DashBoardActivity.this , SignInScreen.class);
+                logout.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(logout);
                 finish();
                 break;
@@ -86,7 +94,7 @@ public class DashBoardActivity extends AppCompatActivity implements View.OnClick
     private void retrofitSignoutInitialization() {
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(ResInterface.BASE_URL)
+                .baseUrl(Const.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -130,4 +138,6 @@ public class DashBoardActivity extends AppCompatActivity implements View.OnClick
         });
 
     }
+
+
 }

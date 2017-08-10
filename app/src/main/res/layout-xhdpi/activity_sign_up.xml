@@ -11,21 +11,21 @@
         android:id="@+id/app_title">
 
         <ImageView
-            android:layout_width="220dp"
-            android:layout_height="220dp"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
             android:id="@+id/imageView"
             android:background="@drawable/logo"
             android:layout_marginLeft="100dp"
-            android:layout_marginTop="160dp"
+            android:layout_marginTop="60dp"
             android:layout_centerHorizontal="true"/>
 
     </RelativeLayout>
 
     <EditText
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="50dp"
         android:layout_below="@+id/app_title"
-        android:layout_marginTop="160dp"
+        android:layout_marginTop="60dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:id="@+id/Remail"
@@ -34,12 +34,11 @@
         android:background="@android:color/black"
         android:textColor="@android:color/darker_gray"
         android:paddingLeft="20dp"
-        android:textSize="25sp"
         />
 
     <EditText
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="50dp"
         android:layout_below="@+id/Remail"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
@@ -51,30 +50,29 @@
         android:textColor="@android:color/darker_gray"
         android:inputType="textPassword"
         android:paddingLeft="20dp"
-        android:textSize="25sp"
         />
-<!--    <View
-        android:layout_width="250dp"
-        android:layout_height="1dp"
-        android:background="@android:color/white"
-        android:layout_alignBottom="@+id/Remail"
-        android:layout_alignStart="@+id/Remail"
-        android:layout_alignLeft="@+id/Remail"
-        />-->
+    <!--    <View
+            android:layout_width="250dp"
+            android:layout_height="1dp"
+            android:background="@android:color/white"
+            android:layout_alignBottom="@+id/Remail"
+            android:layout_alignStart="@+id/Remail"
+            android:layout_alignLeft="@+id/Remail"
+            />-->
 
-   <!-- <View
-        android:layout_width="250dp"
-        android:layout_height="1dp"
-        android:background="@android:color/white"
-        android:layout_alignBottom="@+id/Rpass"
-        android:layout_alignStart="@+id/Rpass"
-        android:layout_alignLeft="@+id/Rpass"
-        android:id="@+id/eview"
-        />-->
+    <!-- <View
+         android:layout_width="250dp"
+         android:layout_height="1dp"
+         android:background="@android:color/white"
+         android:layout_alignBottom="@+id/Rpass"
+         android:layout_alignStart="@+id/Rpass"
+         android:layout_alignLeft="@+id/Rpass"
+         android:id="@+id/eview"
+         />-->
 
     <EditText
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="50dp"
         android:layout_below="@+id/Rpass"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
@@ -86,27 +84,26 @@
         android:textColor="@android:color/darker_gray"
         android:inputType="textPassword"
         android:paddingLeft="20dp"
-        android:textSize="25sp"
         />
-   <!-- <View
-        android:layout_width="250dp"
-        android:layout_height="1dp"
-        android:background="@android:color/white"
-        android:layout_alignBottom="@+id/cPass"
-        android:layout_alignStart="@+id/cPass"
-        android:layout_alignLeft="@+id/cPass"
+    <!-- <View
+         android:layout_width="250dp"
+         android:layout_height="1dp"
+         android:background="@android:color/white"
+         android:layout_alignBottom="@+id/cPass"
+         android:layout_alignStart="@+id/cPass"
+         android:layout_alignLeft="@+id/cPass"
 
-        />-->
+         />-->
 
 
     <Button
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="50dp"
         android:text="Create User"
         android:background="@drawable/button_shape"
         android:textColor="@android:color/white"
         android:textStyle="bold"
-        android:textSize="25dp"
+        android:textSize="16dp"
         android:id="@+id/login_button"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"

@@ -18,6 +18,10 @@ import java.util.Set;
 public class GalleryActvity extends Activity {
 
     List<String> list = new ArrayList<>();
+    private String allImages;
+    public static String strSeparator = "__,__";
+    List<String> photoList = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,6 +29,8 @@ public class GalleryActvity extends Activity {
 
         SharedPreferences preferences = getSharedPreferences("ListDetails", Context.MODE_PRIVATE);
         Set<String> set = preferences.getStringSet("photoList", null);
+        allImages = preferences.getString("insertAllImages","");
+   //     photoList = convertStringToArray(allImages);
 
         for (Iterator<String> it = set.iterator(); it.hasNext();){
 
@@ -38,4 +44,12 @@ public class GalleryActvity extends Activity {
         GalleryAdapter galleryAdapter = new GalleryAdapter(this , list);
         viewPager.setAdapter(galleryAdapter);
     }
+
+/*    public static List<String> convertStringToArray(String str){
+        String[] arr = str.split(strSeparator);
+        for(int i=0; i< arr.length ; i++){
+            list.add(arr[i]);
+        }
+        return list;
+    }*/
 }

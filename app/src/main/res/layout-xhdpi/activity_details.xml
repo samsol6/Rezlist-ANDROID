@@ -21,14 +21,14 @@
 
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="500dp"
+                android:layout_height="275dp"
                 android:id="@+id/itemImage"
-               />
+                />
 
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="70dp"
+                android:layout_height="40dp"
                 android:weightSum="10.1"
                 android:layout_alignBottom="@+id/itemImage"
                 android:background="@android:color/black"
@@ -46,13 +46,13 @@
                         android:layout_height="match_parent"
                         android:layout_centerHorizontal="true">
 
-                    <ImageView
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:background="@android:drawable/ic_menu_gallery"
-                        android:id="@+id/icon"
-                        android:layout_centerVertical="true"
-                        />
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:background="@android:drawable/ic_menu_gallery"
+                            android:id="@+id/icon"
+                            android:layout_centerVertical="true"
+                            />
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -60,7 +60,7 @@
                             android:layout_toRightOf="@+id/icon"
                             android:textColor="@android:color/darker_gray"
                             android:layout_centerVertical="true"
-                            android:textSize="25sp"
+                            android:textSize="16sp"
                             android:layout_marginLeft="10dp"/>
 
                     </RelativeLayout>
@@ -69,8 +69,8 @@
                 </RelativeLayout>
 
                 <View
-                    android:layout_width="0dp"
-                    android:layout_height="40dp"
+                    android:layout_width="1dp"
+                    android:layout_height="20dp"
                     android:layout_gravity="center"
                     android:layout_weight="0.1"
                     android:background="@android:color/darker_gray"/>
@@ -88,8 +88,8 @@
                         android:layout_centerHorizontal="true">
 
                         <ImageView
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
                             android:background="@drawable/location_button"
                             android:id="@+id/loc_icon"
                             android:layout_centerVertical="true"
@@ -101,7 +101,7 @@
                             android:layout_toRightOf="@+id/loc_icon"
                             android:textColor="@android:color/darker_gray"
                             android:layout_centerVertical="true"
-                            android:textSize="25sp"
+                            android:textSize="16sp"
                             android:layout_marginLeft="10dp"/>
 
                     </RelativeLayout>
@@ -113,171 +113,160 @@
 
 
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/my_main_layout"
-                android:layout_below="@+id/double_button">
 
             <RelativeLayout
+                android:id="@+id/my_main_layout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/double_button"
                 >
 
 
 
-                        <TextView
-                            android:id="@+id/det_price"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
-                            android:text="$38.485"
-                            android:textColor="@android:color/black"
-                            android:textSize="28dp"
-                            android:layout_margin="10dp"
-                            />
+                <TextView
+                    android:id="@+id/det_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:text="$38.485"
+                    android:textColor="@android:color/black"
+                    android:textSize="18dp"
+                    android:layout_margin="10dp"
+                    />
 
 
+
+                <TextView
+                    android:id="@+id/det_address"
+                    android:layout_width="130dp"
+                    android:layout_height="40dp"
+                    android:layout_alignLeft="@+id/det_price"
+                    android:layout_alignStart="@+id/det_price"
+                    android:layout_below="@+id/det_price"
+                    android:gravity="left"
+                    android:maxLines="2"
+                    android:text="hello world a "
+                    android:textColor="@android:color/black"
+                    android:textSize="10dp"
+                    android:layout_marginTop="5dp"/>
+
+
+            </RelativeLayout>
+
+
+            <LinearLayout
+                android:layout_width="150dp"
+                android:layout_height="60dp"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/double_button"
+                android:weightSum="6.2">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2">
 
                     <TextView
-                        android:id="@+id/det_address"
-                        android:layout_width="200dp"
+                        android:id="@+id/det_bedTV"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignLeft="@+id/det_price"
-                        android:layout_alignStart="@+id/det_price"
-                        android:layout_below="@+id/det_price"
-                        android:gravity="left"
-                        android:maxLines="2"
-                        android:text="hello world a "
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginBottom="5dp"
+                        android:text="Beds"
                         android:textColor="@android:color/black"
-                        android:textSize="20dp"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginBottom="10dp"/>
+                        android:textSize="10dp" />
 
+                    <TextView
+                        android:id="@+id/det_beds"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_above="@+id/det_bedTV"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginBottom="8dp"
+                        android:text="5"
+                        android:textColor="@android:color/black"
+                        android:textSize="15dp"
+                        android:textStyle="bold" />
 
                 </RelativeLayout>
 
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="0.1"
+                    android:background="@android:color/black" />
 
-                <LinearLayout
-                    android:layout_width="300dp"
-                    android:layout_height="80dp"
-                    android:layout_alignParentRight="true"
-                    android:weightSum="6.2"
 
-                   >
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2">
 
-                    <RelativeLayout
+                    <TextView
+                        android:id="@+id/det_bathTV"
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_weight="2"
-                        android:layout_marginTop="10dp"
-                        >
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginBottom="5dp"
+                        android:text="Baths"
+                        android:textColor="@android:color/black"
+                        android:textSize="10dp" />
 
-                        <TextView
-                            android:id="@+id/det_bedTV"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentBottom="true"
-                            android:layout_centerHorizontal="true"
-
-                            android:text="Beds"
-                            android:textColor="@android:color/black"
-                            android:textSize="20dp" />
-
-                        <TextView
-                            android:id="@+id/det_beds"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_above="@+id/det_bedTV"
-                            android:layout_centerHorizontal="true"
-
-                            android:text="5"
-                            android:textColor="@android:color/black"
-                            android:textSize="25dp"
-                            android:textStyle="bold" />
-
-                    </RelativeLayout>
-
-                    <View
-                        android:layout_width="1dp"
-                        android:layout_height="30dp"
-                        android:layout_gravity="center"
-                        android:layout_weight="0.1"
-                        android:background="@android:color/black" />
-
-
-                    <RelativeLayout
+                    <TextView
+                        android:id="@+id/det_bath"
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_weight="2"
-                        android:layout_marginTop="10dp">
-
-                        <TextView
-                            android:id="@+id/det_bathTV"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentBottom="true"
-                            android:layout_centerHorizontal="true"
-
-                            android:text="Baths"
-                            android:textColor="@android:color/black"
-                            android:textSize="20dp" />
-
-                        <TextView
-                            android:id="@+id/det_bath"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_above="@+id/det_bathTV"
-                            android:layout_centerHorizontal="true"
-                            android:text="2"
-                            android:textColor="@android:color/black"
-                            android:textSize="25dp"
-                            android:textStyle="bold" />
-
-                    </RelativeLayout>
-
-                    <View
-                        android:layout_width="1dp"
-                        android:layout_height="30dp"
-                        android:layout_gravity="center"
-                        android:layout_weight="0.1"
-                        android:background="@android:color/black" />
-
-                    <RelativeLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_weight="2"
-                        android:layout_marginTop="10dp"
-                       >
-
-                        <TextView
-                            android:id="@+id/det_sqFtTV"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentBottom="true"
-                            android:layout_centerHorizontal="true"
-                            android:text="Sq. Ft."
-                            android:textColor="@android:color/black"
-                            android:textSize="20dp"
-                            />
-
-                        <TextView
-                            android:id="@+id/det_sqFt"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_above="@+id/det_sqFtTV"
-                            android:layout_centerHorizontal="true"
-                            android:text="2000"
-                            android:textColor="@android:color/black"
-                            android:textSize="25dp"
-                            android:textStyle="bold"
-                           />
-
-                    </RelativeLayout>
-
-                </LinearLayout>
+                        android:layout_height="wrap_content"
+                        android:layout_above="@+id/det_bathTV"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginBottom="8dp"
+                        android:text="2"
+                        android:textColor="@android:color/black"
+                        android:textSize="15dp"
+                        android:textStyle="bold" />
 
                 </RelativeLayout>
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="0.1"
+                    android:background="@android:color/black" />
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2">
+
+                    <TextView
+                        android:id="@+id/det_sqFtTV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginBottom="5dp"
+                        android:text="Sq. Ft."
+                        android:textColor="@android:color/black"
+                        android:textSize="10dp" />
+
+                    <TextView
+                        android:id="@+id/det_sqFt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_above="@+id/det_sqFtTV"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginBottom="8dp"
+                        android:text="2000"
+                        android:textColor="@android:color/black"
+                        android:textSize="15dp"
+                        android:textStyle="bold" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
 
             <View
                 android:layout_width="match_parent"
@@ -294,92 +283,91 @@
                 android:id="@+id/map_lay">
 
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:text="DESCRIPTION"
-                android:textColor="#3d3939"
-                android:textSize="30sp"
-                android:layout_marginTop="30dp"
-                android:textStyle="bold"
-                android:id="@+id/desc_heading"
-                />
-
-
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="180dp"
-                android:layout_below="@+id/desc_heading"
-                android:layout_margin="20dp"
-                android:background="@drawable/details_screen_bg"
-                android:id="@+id/description"
-              >
-
-                <ScrollView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                       >
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:id="@+id/house_description"
-                            android:gravity="left|start"
-                            android:layout_margin="5dp"
-                            android:text="20sp"/>
-
-
-                    </RelativeLayout>
-
-
-                </ScrollView>
-
-
-
-            </RelativeLayout>
-
-
-
-
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="270dp"
-                android:layout_below="@+id/description"
-                android:layout_margin="20dp"
-                android:background="@drawable/details_screen_bg">
-
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:id="@+id/house_address"
-                    android:text="8930 Oakwood Dr"
-                    android:textColor="@android:color/black"
-                    android:gravity="center_vertical"
-                    android:layout_marginLeft="10dp"
-                    android:maxLines="1"
-                    android:textSize="25sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:text="DESCRIPTION"
+                    android:textColor="#3d3939"
+                    android:textSize="18sp"
+                    android:layout_marginTop="30dp"
+
+                    android:textStyle="bold"
+                    android:id="@+id/desc_heading"
                     />
 
-                <ImageView
+
+
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/mappss"
-                    android:layout_below="@+id/house_address"
-                    android:layout_margin="1dp"
-                    android:id="@+id/mapView"/>
+                    android:layout_height="80dp"
+                    android:layout_below="@+id/desc_heading"
+                    android:layout_margin="20dp"
+                    android:background="@drawable/details_screen_bg"
+                    android:id="@+id/description"
+                    >
+
+                    <ScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            >
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:id="@+id/house_description"
+                                android:gravity="left|start"
+                                android:layout_margin="5dp"/>
 
 
+                        </RelativeLayout>
 
-            </RelativeLayout>
+
+                    </ScrollView>
+
+
 
                 </RelativeLayout>
+
+
+
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="170dp"
+                    android:layout_below="@+id/description"
+                    android:layout_margin="20dp"
+                    android:background="@drawable/details_screen_bg">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:id="@+id/house_address"
+                        android:text="8930 Oakwood Dr"
+                        android:textColor="@android:color/black"
+                        android:gravity="center_vertical"
+                        android:layout_marginLeft="10dp"
+                        android:maxLines="1"
+                        />
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/mappss"
+                        android:layout_below="@+id/house_address"
+                        android:layout_margin="1dp"
+                        android:id="@+id/mapView"/>
+
+
+
+                </RelativeLayout>
+
+            </RelativeLayout>
 
 
 
@@ -395,7 +383,7 @@
                     android:layout_marginLeft="20dp"
                     android:text="KEY DETAILS"
                     android:textColor="#3d3939"
-                    android:textSize="30sp"
+                    android:textSize="18sp"
                     android:layout_marginTop="30dp"
                     android:textStyle="bold"
                     android:id="@+id/key_heading"
@@ -426,15 +414,13 @@
                                 android:layout_marginLeft="15dp"
                                 android:text="style"
                                 android:textColor="#3d3939"
-                                android:id="@+id/string"
-                                android:textSize="20sp"/>
+                                android:id="@+id/string"/>
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="160dp"
                                 android:id="@+id/style_value"
-                                android:layout_alignTop="@+id/string"
-                                android:textSize="20sp"/>
+                                android:layout_alignTop="@+id/string"/>
 
 
                             <TextView
@@ -445,15 +431,13 @@
                                 android:text="Property Type"
                                 android:textColor="#3d3939"
                                 android:id="@+id/property"
-                                android:layout_below="@+id/string"
-                                android:textSize="20sp"/>
+                                android:layout_below="@+id/string"/>
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="160dp"
                                 android:layout_alignTop="@+id/property"
-                                android:id="@+id/pro_value"
-                                android:textSize="20sp"/>
+                                android:id="@+id/pro_value"/>
 
 
                             <TextView
@@ -465,7 +449,6 @@
                                 android:textColor="#3d3939"
                                 android:id="@+id/community"
                                 android:layout_below="@+id/property"
-                                android:textSize="20sp"
                                 />
                             <TextView
                                 android:layout_width="wrap_content"
@@ -473,8 +456,7 @@
                                 android:layout_marginLeft="160dp"
                                 android:id="@+id/com_value"
                                 android:text="N/A"
-                                android:layout_alignTop="@+id/community"
-                                android:textSize="20sp"/>
+                                android:layout_alignTop="@+id/community"/>
 
 
                             <TextView
@@ -485,15 +467,13 @@
                                 android:text="Contry"
                                 android:textColor="#3d3939"
                                 android:id="@+id/country"
-                                android:layout_below="@+id/community"
-                                android:textSize="20sp"/>
+                                android:layout_below="@+id/community"/>
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="160dp"
                                 android:id="@+id/con_value"
-                                android:layout_alignTop="@+id/country"
-                                android:textSize="20sp"/>
+                                android:layout_alignTop="@+id/country"/>
 
 
                             <TextView
@@ -504,15 +484,13 @@
                                 android:text="MLS#"
                                 android:textColor="#3d3939"
                                 android:id="@+id/mls"
-                                android:layout_below="@+id/country"
-                                android:textSize="20sp"/>
+                                android:layout_below="@+id/country"/>
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="160dp"
                                 android:id="@+id/mls_value"
-                                android:layout_alignTop="@+id/mls"
-                                android:textSize="20sp"/>
+                                android:layout_alignTop="@+id/mls"/>
 
 
                             <TextView
@@ -523,15 +501,13 @@
                                 android:text="Lot Size"
                                 android:textColor="#3d3939"
                                 android:id="@+id/lot_size"
-                                android:layout_below="@+id/mls"
-                                android:textSize="20sp"/>
+                                android:layout_below="@+id/mls"/>
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="160dp"
                                 android:id="@+id/lot_value"
-                                android:layout_alignTop="@+id/lot_size"
-                                android:textSize="20sp"/>
+                                android:layout_alignTop="@+id/lot_size" />
 
 
 
@@ -543,15 +519,13 @@
                                 android:text="Built"
                                 android:textColor="#3d3939"
                                 android:id="@+id/built"
-                                android:layout_below="@+id/lot_size"
-                                android:textSize="20sp"/>
+                                android:layout_below="@+id/lot_size"/>
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="160dp"
                                 android:id="@+id/year_built"
-                                android:layout_alignTop="@+id/built"
-                                android:textSize="20sp"/>
+                                android:layout_alignTop="@+id/built" />
 
 
                             <TextView
@@ -561,11 +535,11 @@
                                 android:text="Details"
                                 android:gravity="center"
                                 android:layout_below="@+id/built"
-                                android:textSize="30sp"
+                                android:textSize="20sp"
                                 android:layout_marginTop="10dp"
                                 android:textStyle="bold"
                                 android:textColor="@android:color/holo_blue_bright"
-                               android:padding="5dp"/>
+                                android:padding="5dp"/>
 
 
                         </RelativeLayout>
@@ -582,7 +556,7 @@
 
 
 
-            </RelativeLayout>
+        </RelativeLayout>
 
 
     </ScrollView>

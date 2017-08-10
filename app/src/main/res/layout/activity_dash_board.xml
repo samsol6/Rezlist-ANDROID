@@ -68,7 +68,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="10dp"
-                android:background="@drawable/search_white"
+                android:background="@drawable/search"
                 android:id="@+id/explore"/>
             <TextView
                 android:layout_width="wrap_content"
@@ -112,7 +112,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
-            android:background="@drawable/white_cal"
+            android:background="@drawable/cal"
             android:id="@+id/calculator"
             />
 
@@ -158,7 +158,7 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginLeft="20dp"
-                android:background="@drawable/white_bell"
+                android:background="@drawable/bell"
                 android:id="@+id/not"
                 android:layout_centerVertical="true"
                 />
@@ -208,7 +208,7 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginLeft="20dp"
-                android:background="@drawable/white_setting"
+                android:background="@drawable/setting"
                 android:id="@+id/setting"
                 android:layout_centerVertical="true"/>
 
@@ -254,9 +254,9 @@
             android:padding="10dp">
 
             <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginLeft="16dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="20dp"
                 android:background="@drawable/group"
                 android:id="@+id/list"
                 android:layout_centerVertical="true"/>
@@ -301,9 +301,9 @@
             android:padding="10dp">
 
             <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginLeft="16dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="20dp"
                 android:background="@drawable/logout"
                 android:id="@+id/l_image"
                 android:layout_centerVertical="true"/>

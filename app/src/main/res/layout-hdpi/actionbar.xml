@@ -7,7 +7,7 @@
     <ImageView
         android:layout_width="25dp"
         android:layout_height="25dp"
-        android:background="@drawable/location_button"
+        android:background="@drawable/location"
         android:layout_margin="8dp"
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
@@ -44,27 +44,27 @@
     </RelativeLayout>
             -->
 
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/edit_text_background"
-            android:text="Search here..."
-            android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginLeft="10dp"
-            android:id="@+id/actionInput"
-            android:clickable="true"
-            android:focusableInTouchMode="true"
-            android:textColor="@android:color/darker_gray"
-            android:onClick="searchInputClicked"
-            android:cursorVisible="false"
-            android:paddingRight="10dp"
-            android:maxLines="1"
-            android:drawableLeft="@android:drawable/ic_menu_search"
-            android:layout_toRightOf="@id/location_button"
-            android:layout_toLeftOf="@+id/menuButton"
-            android:padding="2dp"
-            />
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/edit_text_background"
+        android:text="Search here..."
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="10dp"
+        android:id="@+id/actionInput"
+        android:clickable="true"
+        android:focusableInTouchMode="true"
+        android:textColor="@android:color/darker_gray"
+        android:onClick="searchInputClicked"
+        android:cursorVisible="false"
+        android:paddingRight="10dp"
+        android:maxLines="1"
+        android:drawableLeft="@android:drawable/ic_menu_search"
+        android:layout_toRightOf="@id/location_button"
+        android:layout_toLeftOf="@+id/menuButton"
+        android:padding="2dp"
+        />
 
 
 

@@ -19,25 +19,25 @@
             android:id="@+id/profile_lay"
             android:padding="10dp">
 
-        <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/contact"
-            android:id="@+id/ring"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/ring"
-            android:text="Profile"
-            android:textColor="@android:color/white"
-            android:layout_centerVertical="true"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:layout_marginLeft="20dp"
-            />
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/contact"
+                android:id="@+id/ring"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/ring"
+                android:text="Profile"
+                android:textColor="@android:color/white"
+                android:layout_centerVertical="true"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_marginLeft="20dp"
+                />
         </RelativeLayout>
 
 
@@ -68,7 +68,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="10dp"
-                android:background="@drawable/search_white"
+                android:background="@drawable/search"
                 android:id="@+id/explore"/>
             <TextView
                 android:layout_width="wrap_content"
@@ -80,7 +80,7 @@
                 android:layout_centerVertical="true"
                 android:layout_toRightOf="@+id/explore"
                 android:layout_marginLeft="20dp"
-                 />
+                />
         </RelativeLayout>
 
 
@@ -106,31 +106,31 @@
             android:id="@+id/calculator_lay"
             android:padding="10dp">
 
-        <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/white_cal"
-            android:id="@+id/calculator"
-            />
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/cal"
+                android:id="@+id/calculator"
+                />
 
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Flat Fee Calculator"
-            android:textColor="@android:color/white"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:layout_marginLeft="23dp"
-            android:layout_centerVertical="true"
-            android:layout_toRightOf="@+id/calculator"
-            android:layout_toEndOf="@+id/calculator"
-            android:layout_marginStart="23dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Flat Fee Calculator"
+                android:textColor="@android:color/white"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_marginLeft="20dp"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/calculator"
+                android:layout_toEndOf="@+id/calculator"
+                />
 
-            </RelativeLayout>
+        </RelativeLayout>
 
 
         <View
@@ -158,7 +158,7 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginLeft="20dp"
-                android:background="@drawable/white_bell"
+                android:background="@drawable/bell"
                 android:id="@+id/not"
                 android:layout_centerVertical="true"
                 />
@@ -208,7 +208,7 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginLeft="20dp"
-                android:background="@drawable/white_setting"
+                android:background="@drawable/setting"
                 android:id="@+id/setting"
                 android:layout_centerVertical="true"/>
 
@@ -254,9 +254,9 @@
             android:padding="10dp">
 
             <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginLeft="16dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="20dp"
                 android:background="@drawable/group"
                 android:id="@+id/list"
                 android:layout_centerVertical="true"/>
@@ -269,7 +269,7 @@
                 android:textColor="@android:color/white"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:layout_marginLeft="16dp"
+                android:layout_marginLeft="20dp"
                 android:layout_centerVertical="true"
                 android:layout_toRightOf="@+id/list"
                 />
@@ -301,9 +301,9 @@
             android:padding="10dp">
 
             <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginLeft="16dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="20dp"
                 android:background="@drawable/logout"
                 android:id="@+id/l_image"
                 android:layout_centerVertical="true"/>
@@ -316,7 +316,7 @@
                 android:textColor="@android:color/white"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:layout_marginLeft="16dp"
+                android:layout_marginLeft="20dp"
                 android:layout_centerVertical="true"
                 android:layout_toRightOf="@+id/l_image"
                 />

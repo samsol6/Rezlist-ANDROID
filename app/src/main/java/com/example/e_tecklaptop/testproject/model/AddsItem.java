@@ -12,13 +12,13 @@ public class AddsItem {
     private String address;
     private String description;
     private String image;
-    private int price;
+    private String price;
     private String baths;
     private String beds;
     private String area;
     private String latitude;
     private String logitude;
-    private List<String> allPhotos = new ArrayList<>();
+    private ArrayList<ArrayList<String>> allPhotos = new ArrayList<>();
     private String style;
     private String property_type;
     private String community;
@@ -26,6 +26,40 @@ public class AddsItem {
     private String mlsID;
     private String lotSize;
     private String yearBuilt;
+    private int id;
+    private String insertAllImages;
+
+    public String getInsertAllImages() {
+        return insertAllImages;
+    }
+
+    public void setInsertAllImages(String insertAllImages) {
+        this.insertAllImages = insertAllImages;
+    }
+
+    public ArrayList<ArrayList<String>> getAllPhotos() {
+        return allPhotos;
+    }
+
+    public void setAllPhotos(ArrayList<ArrayList<String>> allPhotos) {
+        this.allPhotos = allPhotos;
+    }
+
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getYearBuilt() {
         return yearBuilt;
@@ -83,13 +117,6 @@ public class AddsItem {
         this.lotSize = lotSize;
     }
 
-    public List<String> getAllPhotos() {
-        return allPhotos;
-    }
-
-    public void setAllPhotos(List<String> allPhotos) {
-        this.allPhotos = allPhotos;
-    }
 
     public String getBaths() {
         return baths;
@@ -132,13 +159,7 @@ public class AddsItem {
     }
 
 
-    public int getPrice() {
-        return price;
-    }
 
-    public void setPrice(int price) {
-        this.price = price;
-    }
 
     public String getImage() {
         return image;
